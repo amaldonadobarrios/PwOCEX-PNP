@@ -106,7 +106,6 @@
           </div>
   </section>
   <!-- END CONTENT -->
-
   <!-- //////////////////////////////////////////////////////////////////////////// -->
   <!-- START RIGHT SIDEBAR NAV-->
   
@@ -153,8 +152,11 @@
     <script type="text/javascript" src="js/plugins.min.js"></script>
     <!--custom-script.js - Add your own theme custom JS-->
     <script type="text/javascript" src="js/custom-script.js"></script>
-    
-    
+    <script type="text/javascript" src="js/serverJS/controller.js"></script>  
 </body>
-
+<script type="text/javascript">
+function mensaje(msj){
+	Materialize.toast(msj, 4000,'rounded');
+}
+</script>
 </html>

@@ -24,29 +24,27 @@
                     </div>
                 </div>
                 </li>
-                <li class="bold active"><a href="SPage?action=RegUsu" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Registrar Usuario</a>
+                <li class="bold active"><a href="SPage?action=RegCharla" class="waves-effect waves-cyan"><i class="mdi-action-assignment"></i>Registrar Capacitación</a>
                 </li>
-                <li class="bold active"><a href="SPage?action=RegUsu" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Registrar Usuario</a>
+                <li class="bold active"><a href="SPage?action=RegPreinscrip" class="waves-effect waves-cyan"><i class="mdi-action-assignment-ind"></i>Registrar Preinscripción</a>
                 </li>
-                <li class="bold active"><a href="SPage?action=RegUsu" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Registrar Usuario</a>
+                <li class="bold active"><a href="SPage?action=RegDoc" class="waves-effect waves-cyan"><i class="mdi-action-find-in-page"></i>Revisión documentación</a>
                 </li>
-                <li class="bold active"><a href="SPage?action=RegUsu" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Registrar Usuario</a>
+                <li class="bold active"><a href="SPage?action=RegGt" class="waves-effect waves-cyan"><i class="mdi-action-find-in-page"></i>Registrar Guía de transito</a>
                 </li>
-                <li class="bold active"><a href="SPage?action=RegUsu" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Registrar Usuario</a>
+                <li class="bold active"><a href="SPage?action=RegOc" class="waves-effect waves-cyan"><i class="mdi-maps-local-shipping"></i>Registrar Orden de Custodia</a>
                 </li>
-                <li class="bold active"><a href="SPage?action=RegUsu" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Registrar Usuario</a>
+                <li class="bold active"><a href="SPage?action=AsigCus" class="waves-effect waves-cyan"><i class="mdi-maps-directions-walk"></i>Asignar Custodia</a>
                 </li>
-                <li class="bold active"><a href="SPage?action=RegUsu" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Registrar Usuario</a>
+                <li class="bold active"><a href="SPage?action=RepComis" class="waves-effect waves-cyan"><i class="mdi-social-poll"></i>Reporte Comisiones</a>
                 </li>
-                <li class="bold active"><a href="SPage?action=RegUsu" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Registrar Usuario</a>
+                <li class="bold active"><a href="SPage?action=RegUsu" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i>Registrar Usuario</a>
                 </li>
-                <li class="bold active"><a href="SPage?action=RegUsu" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Registrar Usuario</a>
+                <li class="bold active"><a href="SPage?action=RegUsu" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i>Registrar Usuario</a>
                 </li>
-                <li class="bold active"><a href="SPage?action=RegUsu" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Registrar Usuario</a>
+                <li class="bold active"><a href="SPage?action=RegUsu" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i>Registrar Usuario</a>
                 </li>
-                <li class="bold active"><a href="SPage?action=RegUsu" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Registrar Usuario</a>
-                </li>
-                <li class="bold active"><a href="SPage?action=RegUsu" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Registrar Usuario</a>
+                <li class="bold active"><a href="SPage?action=RegUsu" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i>Registrar Usuario</a>
                 </li>
                 
                 

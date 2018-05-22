@@ -47,6 +47,27 @@ public class SPage extends HttpServlet {
 					case "RegUsu":
 						this.pageRegUsu(request,response);
 						break;
+					case "RegCharla":
+						this.RegCharla(request,response);
+						break;	
+					case "RegPreinscrip":
+						this.RegPreinscrip(request,response);
+						break;
+					case "RegDoc":
+						this.RegDoc(request,response);
+						break;
+					case "RegGt":
+						this.RegGt(request,response);
+						break;
+					case "RegOc":
+						this.RegOc(request,response);
+						break;
+					case "AsigCus":
+						this.AsigCus(request,response);
+						break;
+					case "RepComis":
+						this.RepComis(request,response);
+						break;
 					default:
 						this.pagelogin(request, response);
 						break;
@@ -72,6 +93,64 @@ public class SPage extends HttpServlet {
 			System.out.println("DESTINO:" + "index.jsp");
 			forwar("index.jsp", request, response);
 		}
+	}
+
+	private void RepComis(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void AsigCus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("breadcrumb", "Asignación del personal PNP");
+		request.setAttribute("breadcrumb2", "PROCEDER A SELECCIONAR LA SITUACION DEL PERSONAL PNP Y OBSERVARA EL PERSONAL PNP DISPONIBLE");
+		request.setAttribute("body", "AsigCus");
+		forwar("jsp/template.jsp", request, response);
+		
+	}
+
+	private void RegOc(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("breadcrumb", "Registrar Orden de Custodia");
+		request.setAttribute("breadcrumb2", "PROCEDER A REGISTRAR LA ORDEN DE CUSTODIA");
+		request.setAttribute("body", "RegOc");
+		forwar("jsp/template.jsp", request, response);
+		
+	}
+
+	private void RegGt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		request.setAttribute("breadcrumb", "Registrar Guia de transito");
+		request.setAttribute("breadcrumb2", "PROCEDER A REGISTRAR LA GUIA DE TRANSITO");
+		request.setAttribute("body", "RegGt");
+		forwar("jsp/template.jsp", request, response);
+		
+	}
+
+	private void RegDoc(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("breadcrumb", "Registrar Documentacion");
+		request.setAttribute("breadcrumb2", "PROCEDER A VERIFICAR LA DOCUMENTACION COLOCANDO CHECKS");
+		request.setAttribute("body", "RegDoc");
+		forwar("jsp/template.jsp", request, response);
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void RegPreinscrip(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setAttribute("breadcrumb", "Registrar Preinscripción");
+		request.setAttribute("breadcrumb2", "En esta sección usted debera de ingresar información personal para posteriormente registrar su inscripción en las Oficinas de OCEX PNP");
+		request.setAttribute("body", "RegPreinscrip");
+		forwar("jsp/template.jsp", request, response);
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void RegCharla(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("breadcrumb", "Registrar Capacitación");
+		request.setAttribute("breadcrumb2", "En esta sección puede registrar la acapacitación");
+		request.setAttribute("body", "RegCharla");
+		forwar("jsp/template.jsp", request, response);	
+		
 	}
 
 	private void pageRegUsu(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

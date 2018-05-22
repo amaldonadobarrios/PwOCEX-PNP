@@ -72,8 +72,35 @@ public class LogicValidarAguila6 {
 		HttpSession sesion = req.getSession();
 		sesion.setAttribute("unidad", usu.getUnidad());
 		sesion.setAttribute("sexo", usu.getSexo());
+		sesion.setAttribute("dni", usu.getDni());
 		return usu;
 
 	}
+	public boolean UsuarioActive(String cip) throws RemoteException, ServiceException {
+		boolean estado = false;
+		ServiceLocator objLocator = new ServiceLocator();
+		estado = objLocator.getServiceSoap().existeUsuarioLDAP(cip);
+		return estado;
+	}
+	public ClsDatos GetUsuarioActive(String cip) throws RemoteException, ServiceException {
+		String rpta = null;
+		ClsDatos objDatos = new ClsDatos();
+		ServiceLocator objLocator = new ServiceLocator();
+		objDatos = objLocator.getServiceSoap().recuperaDatosUsuarioExisteLDAP(cip);
+		return objDatos;
+	}
+	public  UsuarioAguila6 getAguilabd(String cip) throws Exception {
+		Aguila6Service dao = new Aguila6ServiceImpl();
+		UsuarioAguila6 usu = new UsuarioAguila6();
+		String ncip=String.format("%08d", Integer.parseInt(cip));
+		try {
+			usu = dao.getAguila6bd(ncip);
+		} catch (Exception e) {
+			usu=null;
+		}
+		return usu;
+	}
+	
+	
 
 }

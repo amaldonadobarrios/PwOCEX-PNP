@@ -1,4 +1,7 @@
-
+<%
+	String contextPath = request.getContextPath();
+%>
+	<input type="hidden" id="contextPath" name="contextPath" value="<%=contextPath%>">
 <div class="row center-align">
 	<div class="col s12 m4 l4">
 		<p></p>
@@ -9,8 +12,7 @@
 			<input class="form-control" placeholder="Buscar por CIP"
 				maxlength="8" onkeypress="return solo_numeros(event)"
 				id="txtconsulta" name="txtconsulta" type="text"><span>
-				<button class="btn btn-default" onclick="fnconsultar();"
-					type="button">Consultar</button>
+				<button class="btn btn-default" onclick="consultarcip()" type="button">Consultar</button>
 			</span>
 		</div>
 	</div>
@@ -26,22 +28,22 @@
 			<div class="row">
 				<form class="col s12">
 					<div class="row center-align">
-						<img class="responsive-img circle" alt=""
-							src="https://aguila6.pnp.gob.pe/FotosTit/6/31424836.jpg"
+						<img class="responsive-img circle" alt="" id="foto"
+							src=""
 							height="240" width="200">
 					</div>
 					<div class="row">
 						<div class="input-field col s12">
-							<i class="mdi-communication-email prefix"></i> <input id="email3"
-								readonly="readonly" value="S1 PNP MALDONADO BARRIOS ALEXANDER"
+							<i class="mdi-action-account-circle prefix"></i> <input id="txtusuario"
+								readonly="readonly" value=" "
 								type="text"> <label for="Apellidos y Nombres">Apellidos
 								y Nombres</label>
 						</div>
 					</div>
 					<div class="row">
 						<div class="input-field col s12">
-							<i class="mdi-communication-email prefix"></i> <input id="email3"
-								readonly="readonly" value="31424836" type="text"> <label
+							<i class="mdi-action-credit-card prefix"></i> <input id="txtcip"
+								readonly="readonly" value=" " type="text"> <label
 								for="Número de CIP">N° DE CIP:</label>
 						</div>
 					</div>
@@ -116,7 +118,32 @@
 		</div>
 	</div>
 </div>
+
 <!-- Inline Form -->
 
 <!-- Inline form with placeholder -->
+<script>
+function consultarcip(){
+	var cip = $("#txtconsulta").val();
+	var contexto = document.getElementById("contextPath").value;
+	if (cip=='') {
+		//vacio
+	}else{
+		if (cip>0) {
+			//es numero ok
+			var vservlet = contexto + '/SUsuario';
+			var txtevento = 'consultacipAguila';
+			var jqdata = {
+				hdEvento : txtevento,
+				cip: cip	
+			};
+			fnEjecutarPeticion(vservlet, jqdata, txtevento);
+		}else{
+		 // dato no valido
+		}
+	}
+	
+	
+}
 
+</script>
