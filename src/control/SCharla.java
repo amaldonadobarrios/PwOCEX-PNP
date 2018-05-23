@@ -101,7 +101,6 @@ public class SCharla extends HttpServlet {
 		charla.setNombrePer(usuario);
 		charla.setUnidad(unidad);
 		charla.setFlagCharla("1");
-		charla.setFechaReg(new Date());
 		HttpSession sesion = request.getSession();
 		String usu_reg = (String) sesion.getAttribute("CIP");
 		charla.setUsuReg(usu_reg);

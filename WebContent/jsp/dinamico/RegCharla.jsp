@@ -80,7 +80,7 @@
 						</div>
 						<div class="input-field col s12">
 							<div class="input-field col s12">
-								<button class="btn cyan waves-effect waves-light"
+								<button class="btn cyan waves-effect waves-light" id="btnguardar"
 									onclick="fngrabarcharla();" type="button">Guardar</button>
 							</div>
 						</div>
@@ -133,6 +133,7 @@
 		var contexto = document.getElementById("contextPath").value;
 	if (cip>0) {
 		if (fechacharla!='' && fechavigencia!='' ) {
+			document.getElementById("btnguardar").disabled = true;
 			var vservlet = contexto + '/SCharla';
 			var txtevento = 'saveCharla';
 			var jqdata = {

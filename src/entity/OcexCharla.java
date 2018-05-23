@@ -16,7 +16,7 @@ public class OcexCharla implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="OCEX_CHARLA_IDCHARLA_GENERATOR", sequenceName="SECCHAR")
+	@SequenceGenerator(name="OCEX_CHARLA_IDCHARLA_GENERATOR", sequenceName="SECCHARLA",allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="OCEX_CHARLA_IDCHARLA_GENERATOR")
 	@Column(name="ID_CHARLA")
 	private long idCharla;
@@ -30,10 +30,6 @@ public class OcexCharla implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(name="FEC_CHAR")
 	private Date fecChar;
-
-	@Temporal(TemporalType.DATE)
-	@Column(name="FECHA_REG")
-	private Date fechaReg;
 
 	@Column(name="FLAG_CHARLA")
 	private String flagCharla;
@@ -85,14 +81,6 @@ public class OcexCharla implements Serializable {
 		this.fecChar = fecChar;
 	}
 
-	public Date getFechaReg() {
-		return this.fechaReg;
-	}
-
-	public void setFechaReg(Date fechaReg) {
-		this.fechaReg = fechaReg;
-	}
-
 	public String getFlagCharla() {
 		return this.flagCharla;
 	}
@@ -131,13 +119,6 @@ public class OcexCharla implements Serializable {
 
 	public void setVigChar(Date vigChar) {
 		this.vigChar = vigChar;
-	}
-
-	@Override
-	public String toString() {
-		return "OcexCharla [idCharla=" + idCharla + ", cipPer=" + cipPer + ", dniPer=" + dniPer + ", fecChar=" + fecChar
-				+ ", fechaReg=" + fechaReg + ", flagCharla=" + flagCharla + ", nombrePer=" + nombrePer + ", unidad="
-				+ unidad + ", usuReg=" + usuReg + ", vigChar=" + vigChar + "]";
 	}
 
 }

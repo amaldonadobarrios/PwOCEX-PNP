@@ -2,6 +2,7 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="PwOCEX-PNP" transaction-type="RESOURCE_LOCAL">
 		<class>entity.OcexCharla</class>
+		<class>entity.OcexPerPnp</class>
 		<properties>
 			<property name="eclipselink.jdbc.batch-writing" value="Oracle-JDBC"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@172.31.1.169:1521:esinpoldesa"/>

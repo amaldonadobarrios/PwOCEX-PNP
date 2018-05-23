@@ -38,6 +38,7 @@ function fnControlEvento(vevento, vvrespuesta) {
 				}
 				if (vevento == 'saveCharla') {
 					var respuesta = v_resultado;
+					document.getElementById("btnguardar").disabled = false;
 						if(respuesta=='NOP'){
 						mensaje('ERROR AL GRABAR');
 						}else{
