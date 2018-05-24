@@ -1,4 +1,269 @@
+<jsp:useBean id="now" class="java.util.Date" scope="request" />
+<%
+	String sWS = request.getContextPath();
+%>
 
+
+<script type="text/javascript">
+function fn_subirFichero(){
+    var file = $('[name="myPDF"]');
+    var filename = $.trim(file.val());
+    if (filename !== '') {
+    	 if (updateSize('uploadPDF') < 5000000) {
+    		 var contexto = document.getElementById("contexto").value;
+    			var vservlet = contexto + '/SFichero';
+    	 		var load='<img  height="100px" width="100px" src="'+contexto+'/images/ocex/reloj.gif">';
+    	 	     	$('#msjPDF').html(load);
+    	 	     	fn_upload_ajax(vservlet);
+         } else {
+        	 var contexto = document.getElementById("contexto").value;
+         	 $('#viewer').attr('src', 'about:blank');
+              $('#uploadPDF').val('');
+              var load='<img  height="50px" width="50px" src="'+contexto+'/images/ocex/error.png">';
+             document.getElementById("msjPDF").innerHTML =  load+' ERROR, ARCHIVO SUPERA LOS 5MB';
+         }
+    	
+    	
+    }
+}
+function fn_upload_ajax(vservlet){
+	$.ajax({
+        url: vservlet,
+        type: "POST",
+        data: new FormData(document.getElementById("fileForm")),
+        enctype: 'multipart/form-data',
+        processData: false,
+        contentType: false,
+      }).done(function(data) {
+    	//alert(data);
+    	if (data!=null) {
+    		if (data=='0') {
+    			var contexto = document.getElementById("contexto").value;
+            	 $('#viewer').attr('src', 'about:blank');
+                 $('#uploadPDF').val('');
+                 var load='<img  height="50px" width="50px" src="'+contexto+'/images/ocex/error.png">';
+                document.getElementById("msjPDF").innerHTML =  load+' ERROR, NOMBRE MUY EXTENSO';	
+			}else{
+				var contexto = document.getElementById("contexto").value;
+	    		var load ='<img  height="50px" width="50px" src="'+contexto+'/images/ocex/check.jpg">';
+	    		$('#msjPDF').html(load);
+	    		document.getElementById("id_fichero1").value=data;		
+			}
+    		
+    		
+		}
+      }).fail(function(jqXHR, textStatus) {
+    	  //alert(jqXHR.responseText);
+    	  alert('File upload failed ...');
+      });
+}
+</script>
+<script type="text/javascript">
+function fn_subirFichero1(){
+    var file = $('[name="myPDF1"]');
+    var filename = $.trim(file.val());
+    if (filename !== '') {
+    	 if (updateSize('uploadPDF1') < 5000000) {
+    		 var contexto = document.getElementById("contexto").value;
+    			var vservlet = contexto + '/SFichero';
+    	 		var load='<img  height="100px" width="100px" src="'+contexto+'/images/ocex/reloj.gif">';
+    	 	     	$('#msjPDF1').html(load);
+    	 	     	fn_upload_ajax1(vservlet);
+         } else {
+        	 var contexto = document.getElementById("contexto").value;
+         	 $('#viewer1').attr('src', 'about:blank');
+              $('#uploadPDF1').val('');
+              var load='<img  height="50px" width="50px" src="'+contexto+'/images/ocex/error.png">';
+             document.getElementById("msjPDF1").innerHTML =  load+' ERROR, ARCHIVO SUPERA LOS 5MB';
+         }
+    	
+    	
+    }
+}
+function fn_upload_ajax1(vservlet){
+	$.ajax({
+        url: vservlet,
+        type: "POST",
+        data: new FormData(document.getElementById("fileForm1")),
+        enctype: 'multipart/form-data',
+        processData: false,
+        contentType: false,
+      }).done(function(data) {
+    	//alert(data);
+    	if (data!=null) {
+    		if (data=='0') {
+    			var contexto = document.getElementById("contexto").value;
+            	 $('#viewer1').attr('src', 'about:blank');
+                 $('#uploadPDF1').val('');
+                 var load='<img  height="50px" width="50px" src="'+contexto+'/images/ocex/error.png">';
+                document.getElementById("msjPDF1").innerHTML =  load+' ERROR, NOMBRE MUY EXTENSO';	
+			}else{
+				var contexto = document.getElementById("contexto").value;
+	    		var load ='<img  height="50px" width="50px" src="'+contexto+'/images/ocex/check.jpg">';
+	    		$('#msjPDF1').html(load);
+	    		document.getElementById("id_fichero2").value=data;		
+			}
+    		
+    		
+		}
+      }).fail(function(jqXHR, textStatus) {
+    	  //alert(jqXHR.responseText);
+    	  alert('File upload failed ...');
+      });
+}
+</script>
+<script type="text/javascript">
+function fn_subirFichero2(){
+    var file = $('[name="myPDF2"]');
+    var filename = $.trim(file.val());
+    if (filename !== '') {
+    	 if (updateSize('uploadPDF2') < 5000000) {
+    		 var contexto = document.getElementById("contexto").value;
+    			var vservlet = contexto + '/SFichero';
+    	 		var load='<img  height="100px" width="100px" src="'+contexto+'/images/ocex/reloj.gif">';
+    	 	     	$('#msjPDF2').html(load);
+    	 	     	fn_upload_ajax2(vservlet);
+         } else {
+        	 var contexto = document.getElementById("contexto").value;
+         	 $('#viewer2').attr('src', 'about:blank');
+              $('#uploadPDF2').val('');
+              var load='<img  height="50px" width="50px" src="'+contexto+'/images/ocex/error.png">';
+             document.getElementById("msjPDF2").innerHTML =  load+' ERROR, ARCHIVO SUPERA LOS 5MB';
+         }
+    	
+    	
+    }
+}
+function fn_upload_ajax2(vservlet){
+	$.ajax({
+        url: vservlet,
+        type: "POST",
+        data: new FormData(document.getElementById("fileForm2")),
+        enctype: 'multipart/form-data',
+        processData: false,
+        contentType: false,
+      }).done(function(data) {
+    	//alert(data);
+    	if (data!=null) {
+    		if (data=='0') {
+    			var contexto = document.getElementById("contexto").value;
+            	 $('#viewer2').attr('src', 'about:blank');
+                 $('#uploadPDF2').val('');
+                 var load='<img  height="50px" width="50px" src="'+contexto+'/images/ocex/error.png">';
+                document.getElementById("msjPDF2").innerHTML =  load+' ERROR, NOMBRE MUY EXTENSO';	
+			}else{
+				var contexto = document.getElementById("contexto").value;
+	    		var load ='<img  height="50px" width="50px" src="'+contexto+'/images/ocex/check.jpg">';
+	    		$('#msjPDF2').html(load);
+	    		document.getElementById("id_fichero3").value=data;		
+			}
+    		
+    		
+		}
+      }).fail(function(jqXHR, textStatus) {
+    	  //alert(jqXHR.responseText);
+    	  alert('File upload failed ...');
+      });
+}
+</script>
+<script>
+
+    /**
+    * definimos las variables que almacenar&aacute;n los componentes de la fecha actual
+    */
+    ahora      = new Date();
+    ahoraDay   = ahora.getDate();
+    ahoraMonth = ahora.getMonth();
+    ahoraYear  = ahora.getYear();
+
+    /**
+	* Nestcape Navigator 4x cuenta el anyo a partir de 1900, por lo que es necesario
+	* sumarle esa cantidad para obtener el anyo actual adecuadamente
+	**/
+	if (ahoraYear < 2000) 
+        ahoraYear += 1900;
+
+    /**
+	* funcion para saber cuantos dias tiene cada mes
+	*/
+
+
+    /**
+	* una vez que sabemos cuantos dias tiene cada mes
+	* asignamos dinamicamente este numero al combo de los dias dependiendo 
+	* del mes que aparezca en el combo de los meses
+	*/
+    function asignaDias()
+    {
+        comboDias = document.Fecha.seleccionaDia;
+        comboMeses = document.Fecha.seleccionaMes;
+        comboAnyos = document.formFecha.seleccionaAnyo;
+
+        Month = comboMeses[comboMeses.selectedIndex].text;
+        Year = comboAnyos[comboAnyos.selectedIndex].text;
+
+        diasEnMes = cuantosDias(Month, Year);
+        diasAhora = comboDias.length;
+
+        if (diasAhora > diasEnMes)
+        {
+            for (i=0; i<(diasAhora-diasEnMes); i++)
+            {
+                comboDias.options[comboDias.options.length - 1] = null
+            }
+        }
+        if (diasEnMes > diasAhora)
+        {
+            for (i=0; i<(diasEnMes-diasAhora); i++)
+            {
+                sumaOpcion = new Option(comboDias.options.length + 1);
+                comboDias.options[comboDias.options.length]=sumaOpcion;
+            }
+        }
+        if (comboDias.selectedIndex < 0) 
+	         comboDias.selectedIndex = 0;
+     }
+
+    /**
+	* ahora selecionamos en los combos los valores correspondientes 
+	* a la fecha actual del sistema
+	*/
+    function ponDia()
+    {
+        comboDias = eval("document.formFecha.seleccionaDia");
+        comboMeses = eval("document.formFecha.seleccionaMes");
+        comboAnyos = eval("document.formFecha.seleccionaAnyo");
+
+        comboAnyos[0].selected = true;
+        comboMeses[ahoraMonth].selected = true;
+  
+        asignaDias();
+
+        comboDias[ahoraDay-1].selected = true;
+    }
+
+    /**
+	* esta funcion crea dinamicamente el comb o de los anyos, empezando
+	* por el actual y acabando por el actual+masAnyos
+	*/
+    function rellenaAnyos(masAnyos)
+    {
+        cadena = "";
+
+        for (i=0; i<masAnyos; i++)
+        {
+            cadena += "<option>";
+            cadena += ahoraYear + i;
+        }
+        return cadena;
+    }
+
+  </script>
+<input type="hidden" id="contexto" name="contexto" value="<%=sWS%>">
+<input type="text" id="tipo" name="tipo" value="VACACIONES">
+<input type="text" id="id_fichero1" name="id_fichero1" value="">
+<input type="text" id="id_fichero2" name="id_fichero2" value="">
+<input type="text" id="id_fichero3" name="id_fichero3" value="">
 <div id="preselecting-tab" class="section">
 	<div class="card-panel">
 		<h4 class="header">Seleccione su modalidad de Pre-inscripción</h4>
@@ -9,11 +274,15 @@
 					<div class="col s12">
 						<ul class="tabs tab-demo-active z-depth-1 cyan">
 							<li class="tab col s3"><a
-								class="white-text waves-effect waves-light" href="#vaca">VACACIONES</a>
-							</li>
+								class="white-text waves-effect waves-light tooltipped "
+								data-position="center" data-delay="50"
+								data-tooltip="Seleccione aqui si estará disponible de vacaciones"
+								href="#vaca" onclick="fn_tipo('VACACIONES')">VACACIONES</a></li>
 							<li class="tab col s3"><a
-								class="white-text red darken-1 waves-effect waves-light"
-								href="#franco">FRANCO</a></li>
+								class="white-text red darken-1 waves-effect waves-light tooltipped "
+								data-position="center" data-delay="50"
+								data-tooltip="Seleccione aqui si estará disponible en sus dias de franco"
+								href="#franco" onclick="fn_tipo('FRANCO')">FRANCO</a></li>
 						</ul>
 					</div>
 					<div class="col s12">
@@ -21,10 +290,12 @@
 							<div class="row">
 								<div class="col s12 m12 l12">
 									<div class="card-panel">
-										<h4 class="header2">Registro de Pre-inscripción -
-											Vacaciones</h4>
+										<h4 class="header2 tooltipped " data-position="left"
+											data-delay="50"
+											data-tooltip="Ingrese datos de las Vacaciones">Registro
+											de Pre-inscripción - Vacaciones</h4>
 										<div class="row">
-											<form class="col s12">
+											<div class="col s12">
 												<div class="row">
 													<div class="input-field col s6">
 														<input id="first_name" type="text"
@@ -59,121 +330,19 @@
 															Vacaciones</label>
 													</div>
 												</div>
-												<div class="row">
-													<div class="input-field col s12">
-														<div class="file-field input-field">
-															<div class="btn">
-																<span>Seleccionar Órden de Vacaciones</span> <input
-																	type="file">
-															</div>
-															<div class="file-path-wrapper">
-																<input class="file-path validate" type="text">
-															</div>
-														</div>
-													</div>
 
-												</div>
-												<div class="input-field col s12">
-													<button class="btn cyan waves-effect waves-light left"
-														type="submit" name="action">
-														Subir Órden de Vacaciones <i class="mdi-content-send left"></i>
-													</button>
-												</div>
-											</form>
-										</div>
-									</div>
-
-								</div>
-							</div>
-							<div class="col s12 m12 l12">
-								<div class="card-panel">
-									<h4 class="header2">Servicio de Custodia de Material
-										Explosivo</h4>
-									<div class="row">
-										<form class="col s12">
-											<div class="row">
-												<div class="input-field col s4">
-													<input type="date" class="datepicker" id="fechainiservicio"
-														onchange="fnlimpiarservicio()"> <label
-														for="Fecha Inicio Servicio Custodio">Fecha Inicio
-														Servicio Custodio</label>
-												</div>
-												<div class="input-field col s4">
-													<label for="dias">Dias de disponibilidad para el
-														servicio</label> <input type="text" class="number"
-														onkeypress="return solo_numeros(event);"
-														onchange="fnfechaloadservicio();" maxlength="2"
-														id="txtdiasservicio">
-												</div>
-
-												<div class="input-field col s4">
-													<input type="text" class="text" readonly="readonly"
-														id="fechafinservicio" value=" "> <label
-														for="Fecha Fin Servicio Custodio">Fecha Fin
-														Servicio Custodio</label>
-												</div>
 											</div>
-										</form>
-									</div>
-								</div>
-
-							</div>
-
-
-
-						</div>
-						<div id="franco" class="col s12  red lighten-3">
-							<div class="row">
-								<div class="col s12 m12 l12">
-									<div class="card-panel">
-										<h4 class="header2">Registro de Pre-inscripción - Franco</h4>
-										<div class="row">
-											<form class="col s12">
-												<div class="row">
-													<div class="input-field col s6">
-														<input id="first_name" type="text"
-															value="${sessionScope.usuario}" readonly="readonly">
-														<label for="first_name">Efectivo PNP</label>
-													</div>
-
-													<div class="input-field col s6">
-														<input id="last_name" type="text"
-															value="${sessionScope.unidad}" readonly="readonly">
-														<label for="Unidad">Unidad</label>
-													</div>
-												</div>
-												<div class="row">
-													<div class="input-field col s4">
-														<input type="date" class="datepicker" id="fechainivac"
-															onchange="fnlimpiarvacaciones()"> <label
-															for="Fecha Inicio Vacaciones">Fecha Inicio
-															Vacaciones</label>
-													</div>
-													<div class="input-field col s4">
-														<label for="dias">Dias de vacaciones</label> <input
-															type="text" class="number"
-															onkeypress="return solo_numeros(event);"
-															onchange="fnfechaload();" maxlength="2" id="txtdiasvac">
-													</div>
-
-													<div class="input-field col s4">
-														<input type="text" class="text" readonly="readonly"
-															id="fechafinvac" value=" "> <label
-															for="Fecha Inicio Vacaciones">Fecha Fin
-															Vacaciones</label>
-													</div>
-												</div>
-											</form>
 										</div>
-									</div>
 
+									</div>
 								</div>
 								<div class="col s12 m12 l12">
 									<div class="card-panel">
-										<h4 class="header2">Servicio de Custodia de Material
-											Explosivo</h4>
+										<h4 class="header2 tooltipped " data-position="left"
+											data-delay="50" data-tooltip="Ingrese datos del servicio">Servicio
+											de Custodia de Material Explosivo</h4>
 										<div class="row">
-											<form class="col s12">
+											<div class="col s12">
 												<div class="row">
 													<div class="input-field col s4">
 														<input type="date" class="datepicker"
@@ -196,6 +365,98 @@
 															Servicio Custodio</label>
 													</div>
 												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+							</div>
+						</div>
+						<div id="franco" class="col s12  red lighten-3">
+							<div class="row">
+								<div class="col s12 m12 l12">
+									<div class="card-panel">
+										<h4 class="header2 tooltipped " data-position="left"
+											data-delay="50"
+											data-tooltip="Ingrese datos de la autorización">Registro de Pre-inscripción - Franco</h4>
+										<div class="row">
+											<div class="col s12">
+												<div class="row">
+													<div class="input-field col s6">
+														<input id="first_name" type="text"
+															value="${sessionScope.usuario}" readonly="readonly">
+														<label for="first_name">Efectivo PNP</label>
+													</div>
+
+													<div class="input-field col s6">
+														<input id="last_name" type="text"
+															value="${sessionScope.unidad}" readonly="readonly">
+														<label for="Unidad">Unidad</label>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<div class="col s12 m12 l12">
+									<div class="card-panel">
+										<h4 class="header2 tooltipped " data-position="left"
+											data-delay="50" data-tooltip="Ingrese datos del Servicio">Servicio de Custodia de Material Explosivo</h4>
+										<div class="row">
+											<div class="col s12">
+												<div class="row">
+													<div class="input-field col s6">
+														<select>
+															<option value="" disabled selected>Dias de Franco</option>
+															<option value="P">PARES</option>
+															<option value="I">IMPARES</option>
+														</select> <label>Seleccione Dias de Franco</label>
+													</div>
+													<div class="input-field col s6">
+														<select>
+															<option value="" disabled selected>Seleccione Mes disponible para el Servicio</option>
+															<option value="1">Enero</option>
+															<option value="2">Febrero</option>
+															<option value="3">Marzo</option>
+															<option value="4">Abril</option>
+															<option value="5">Mayo</option>
+															<option value="6">Junio</option>
+															<option value="7">Julio</option>
+															<option value="8">Agosto</option>
+															<option value="9">Setiembre</option>
+															<option value="10">Octubre</option>
+															<option value="11">Noviembre</option>
+															<option value="12">Diciembre</option>
+														</select> <label>Seleccione Mes de Servicio</label>
+													</div>
+													<div class="input-field col s6">
+														<select>
+															<option value="" disabled selected>Seleccione Año disponible para el Servicio</option>
+															<script>document.write(rellenaAnyos(2));</script>
+														</select> <label>Seleccione Año disponible para el Servicio</label>
+													</div>
+
+												</div>
+											</div>
+											<form id="fileForm">
+												<div class="form-group" align="center">
+													<label class="strong">Seleccione su Autorizacion</label>
+													<input id="uploadPDF" type="file" name="myPDF"
+														onchange="PreviewImage();" />&nbsp;
+													<button type="button" onclick="fn_subirFichero();">
+														 Guardar fichero
+													</button>
+													<div id="msjPDF"></div>
+												</div>
+												<div class="video-container" style="clear: both" align="center">
+													<iframe id="viewer" frameborder="0" allowfullscreen> </iframe> 
+												</div>
+<!-- 												<div class="video-container"> -->
+<!-- 											  -->
+<!-- 											</div> -->
 											</form>
 										</div>
 									</div>
@@ -220,13 +481,14 @@
 
 
 </div>
-</div>
+
 
 <div class="col s12 m12 l12">
 	<div class="card-panel">
-		<h4 class="header2">Ficha Médica</h4>
+		<h4 class="header2 tooltipped " data-position="left" data-delay="50"
+			data-tooltip="Ingrese datos de la Ficha médica">Ficha Médica</h4>
 		<div class="row">
-			<form class="col s12">
+			<div class="col s12">
 				<div class="row">
 					<div class="input-field col s6">
 						<select>
@@ -241,27 +503,24 @@
 							De Constancia de Ficha Médica</label>
 					</div>
 				</div>
-				<div class="row">
-					<div class="input-field col s12">
-						<div class="file-field input-field">
-							<div class="btn">
-								<span>Seleccionar Constancia de Ficha Médica</span> <input
-									type="file">
-							</div>
-							<div class="file-path-wrapper">
-								<input class="file-path validate" type="text">
-							</div>
-						</div>
-					</div>
-
-				</div>
-				<div class="input-field col s12">
-					<button class="btn cyan waves-effect waves-light left"
-						type="submit" name="action">
-						Subir Constancia de Ficha Médica <i class="mdi-content-send left"></i>
-					</button>
-				</div>
-			</form>
+				<form id="fileForm1">
+												<div class="form-group" align="center">
+												<label class="strong">Seleccione su Ficha médica</label>
+													<input id="uploadPDF1" type="file" name="myPDF1"
+														onchange="PreviewImage1();" />&nbsp;
+													<button type="button" onclick="fn_subirFichero1();">
+														 Guardar fichero
+													</button>
+													<div id="msjPDF1"></div>
+												</div>
+												<div class="video-container" style="clear: both" align="center">
+													<iframe id="viewer1" frameborder="0" allowfullscreen> </iframe> 
+												</div>
+<!-- 												<div class="video-container"> -->
+<!-- 											  -->
+<!-- 											</div> -->
+											</form>
+			</div>
 		</div>
 	</div>
 
@@ -269,13 +528,16 @@
 
 <div class="col s12 m12 l12">
 	<div class="card-panel">
-		<h4 class="header2">Papeleta de Revista de Arma</h4>
+		<h4 class="header2 tooltipped " data-position="left" data-delay="50"
+			data-tooltip="Ingrese datos del armamento">Papeleta de Revista
+			de Arma</h4>
 		<div class="row">
-			<form class="col s12">
+			<div class="col s12">
 				<div class="row">
 					<div class="input-field col s4">
-						<input id="first_name" type="text" value="PISTOLA" readonly="readonly"> <label
-							for="Tipo">Tipo de Armamento </label>
+						<input id="first_name" type="text" value="PISTOLA"
+							readonly="readonly"> <label for="Tipo">Tipo de
+							Armamento </label>
 					</div>
 
 					<div class="input-field col s4">
@@ -289,7 +551,7 @@
 				</div>
 				<div class="row">
 					<div class="input-field col s4">
-						<input id="first_name" type="text" value="" > <label
+						<input id="first_name" type="text" value=""> <label
 							for="Calibre">Calibre </label>
 					</div>
 
@@ -302,28 +564,24 @@
 							for="MUNICIÓN">CANT. DE MUNICIÓN</label>
 					</div>
 				</div>
-				<div class="row">
-					<div class="input-field col s12">
-						<div class="file-field input-field">
-							<div class="btn">
-								<span>Seleccionar Papeleta de Revista de Armamento</span> <input
-									type="file">
-							</div>
-							<div class="file-path-wrapper">
-								<input class="file-path validate" type="text">
-							</div>
-						</div>
-					</div>
-
-				</div>
-				<div class="input-field col s12">
-					<button class="btn cyan waves-effect waves-light left"
-						type="submit" name="action">
-						Subir Papeleta de Revista de Armamento <i
-							class="mdi-content-send left"></i>
-					</button>
-				</div>
-			</form>
+				<form id="fileForm2">
+												<div class="form-group" align="center">
+													<label class="strong">Seleccione su Papeleta de Armamento</label>
+													<input id="uploadPDF2" type="file" name="myPDF2"
+														onchange="PreviewImage2();" />&nbsp;
+													<button type="button" onclick="fn_subirFichero2();">
+														 Guardar fichero
+													</button>
+													<div id="msjPDF2"></div>
+												</div>
+												<div class="video-container" style="clear: both" align="center">
+													<iframe id="viewer2" frameborder="0" allowfullscreen> </iframe> 
+												</div>
+<!-- 												<div class="video-container"> -->
+<!-- 											  -->
+<!-- 											</div> -->
+											</form>
+			</div>
 		</div>
 	</div>
 
@@ -332,13 +590,14 @@
 	<div class="card-panel">
 		<h4 class="header2">Contacto</h4>
 		<div class="row">
-			<form class="col s12">
+			<div class="col s12">
 				<div class="row">
 					<div class="input-field col s4">
 						<i class="mdi-action-credit-card prefix"></i> <input
 							id="mdi-action-credit-card" type="text"
-							onkeypress="return solo_numeros(event);" maxlength="20"> <label
-							for="mdi-action-credit-card">N° CUENTA DE AHORRO BANCO DE LA NACIÓN</label>
+							onkeypress="return solo_numeros(event);" maxlength="20">
+						<label for="mdi-action-credit-card">N° CUENTA DE AHORRO
+							BANCO DE LA NACIÓN</label>
 					</div>
 					<div class="input-field col s4">
 						<i class="mdi-communication-phone prefix"></i> <input
@@ -352,15 +611,100 @@
 					</div>
 
 				</div>
-			</form>
-		</div>
-	</div>
+				<div class="row">
+					<div class="input-field col s12">
+						<i class="mdi-content-mail prefix"></i> <input
+							id="mdi-content-mail" type="text"> <label
+							for="mdi-content-mail">Correo</label>
+					</div>
 
-</div>
-<script>
+				</div>
+				</>
+			</div>
+		</div>
+
+	</div>
+	<script type="text/javascript">
+	function PreviewImage2() {
+    	$('#msjPDF2').html('');
+        var file = $('[name="myPDF2"]');
+        var filename = $.trim(file.val());
+        if (filename !== '') {
+            if (isJpg(filename) || isPdf(filename)) {
+                $('#viewer2').attr('src', 'about:blank');
+                pdffile = document.getElementById("uploadPDF2").files[0];
+                pdffile_url = URL.createObjectURL(pdffile);
+                $('#viewer2').attr('src', pdffile_url);
+            } else {
+                $('#viewer2').attr('src', 'about:blank');
+                $('#uploadPDF2').val('');
+            }
+        }
+    }
+	   function PreviewImage1() {
+	    	$('#msjPDF1').html('');
+	        var file = $('[name="myPDF1"]');
+	        var filename = $.trim(file.val());
+	        if (filename !== '') {
+	            if (isJpg(filename) || isPdf(filename)) {
+	                $('#viewer1').attr('src', 'about:blank');
+	                pdffile = document.getElementById("uploadPDF1").files[0];
+	                pdffile_url = URL.createObjectURL(pdffile);
+	                $('#viewer1').attr('src', pdffile_url);
+	            } else {
+	                $('#viewer1').attr('src', 'about:blank');
+	                $('#uploadPDF1').val('');
+	            }
+	        }
+	    }
+    function PreviewImage() {
+    	$('#msjPDF').html('');
+        var file = $('[name="myPDF"]');
+        var filename = $.trim(file.val());
+        if (filename !== '') {
+            if (isJpg(filename) || isPdf(filename)) {
+                $('#viewer').attr('src', 'about:blank');
+                pdffile = document.getElementById("uploadPDF").files[0];
+                pdffile_url = URL.createObjectURL(pdffile);
+                $('#viewer').attr('src', pdffile_url);
+            } else {
+                $('#viewer').attr('src', 'about:blank');
+                $('#uploadPDF').val('');
+            }
+        }
+    }
+
+    var isJpg = function (name) {
+        return name.match(/jpg$/i)
+    };
+    var isPdf = function (name) {
+        return name.match(/jpeg$/i)
+    };  
+    
+    
+    function updateSize(elementId) {
+        var nBytes = 0,
+                oFiles = document.getElementById(elementId).files,
+                nFiles = oFiles.length;
+
+        for (var nFileId = 0; nFileId < nFiles; nFileId++) {
+            nBytes += oFiles[nFileId].size;
+        }
+        var sOutput = nBytes + " bytes";
+        // optional code for multiples approximation
+        for (var aMultiples = ["K", "M", "G", "T", "P", "E", "Z", "Y"], nMultiple = 0, nApprox = nBytes / 1024; nApprox > 1; nApprox /= 1024, nMultiple++) {
+            sOutput = " (" + nApprox.toFixed(3) + aMultiples[nMultiple] + ")";
+        }
+
+        return nBytes;
+    }
+ 
+    
+</script>
+	<script>
 	function fnverfechavacaciones() {
 		var fecha = $("#fechainivac").val();
-		return formatDate(fecha);
+		return atDate(fecha);
 	}
 	function fnfechaload() {
 		var dias = $("#txtdiasvac").val();
@@ -401,7 +745,7 @@
 	}
 	function fnverfechaservicio() {
 		var fecha = $("#fechainiservicio").val();
-		return formatDate(fecha);
+		return atDate(fecha);
 	}
 	function fnfechaloadservicio() {
 		var dias = $("#txtdiasservicio").val();
@@ -433,7 +777,7 @@
 
 	}
 
-	function formatDate(date) {
+	function atDate(date) {
 		var d = new Date(date), month = '' + (d.getMonth() + 1), day = ''
 				+ d.getDate(), year = d.getFullYear();
 
@@ -474,5 +818,7 @@
 
 		return dia + "-" + mes + "-" + anio;
 	}
+	function fn_tipo(a){
+		$('#tipo').val(a);	
+	}
 </script>
-

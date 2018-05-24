@@ -33,11 +33,8 @@ public class SPage extends HttpServlet {
 		if (sesion.getAttribute("ID") != null) {
 			if (ID.equals(sesion.getId())) {
 				if (sesion.getAttribute("CIP") != null) {
-
 					String action = request.getParameter("action") != null ? request.getParameter("action") : "";
-
 					switch (action) {
-
 					case "pagehome":
 						this.pagehome(request, response);
 						break;

@@ -59,6 +59,3 @@ function fnControlEvento(vevento, vvrespuesta) {
 function redireccionarPagina() {
   window.location = "SPage?action=login";
 }
-	
-	
-	
