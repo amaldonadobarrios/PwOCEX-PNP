@@ -83,6 +83,7 @@ public class SSeguridad extends HttpServlet {
 
 			}
 		} catch (Exception e) {
+			System.out.println( "Exception final");
 			session.invalidate();
 			request.setAttribute("msg", "SESIÓN FINALIZADA");
 			redireccionar(request, response, "index.jsp");

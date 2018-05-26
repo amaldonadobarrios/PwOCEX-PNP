@@ -5,6 +5,71 @@
 
 
 <script type="text/javascript">
+function validar(){
+	var estado=true;
+	var tipo= $('#tipo').val();
+	if (tipo!='') {
+		if (tipo=='VACACIONES') {
+			var fechainivac=$('#fechainivac').val();
+			fechainivac=atDate(fechainivac);
+			if (fechainivac=='') {
+				estado=false;
+				mensaje('Falta Seleccionar fecha de inicio de vacaciones');	
+			}
+			var txtdiasvac=$('#txtdiasvac').val();
+			var fechafinvac=$('#fechafinvac').val();
+			var fechainiservicio=$('#fechainiservicio').val();
+			fechainiservicio=atDate(fechainiservicio);
+			var txtdiasservicio= $('#txtdiasservicio').val();
+			var fechafinservicio= $('#fechafinservicio').val();	
+		}else if (tipo=='FRANCO') {
+			var diasfranco = $('#diasfranco').val();
+			var messervicio =$('#messervicio').val();
+			var añoservicio =$('#añoservicio').val();
+		}
+		var aptitud= $('#aptitud').val();
+		var pistola=$('#pistola').val();
+		var serie=$('#serie').val();
+		var marca =$('#marca').val();
+		var calibre=$('#calibre').val();
+		var caf=$('#caf').val();
+		var municion= $('#municion').val();
+		var nrorevista=$('#nrorevista').val();
+		var unidadrevista=$('#unidadrevista').val();
+		var cuenta=$('#cuenta').val();
+		var telefono=$('#telefono').val();
+		var domicilio=$('#domicilio').val();
+	}else{
+		estado=false;
+		mensaje('Falta Seleccionar la modalidad del servicio');
+	}
+	var id_persona = $('#id_persona').val();
+	var id_fichero1= $('#id_fichero1').val();
+	var id_fichero2= $('#id_fichero2').val();
+	var id_fichero3= $('#id_fichero3').val();
+	return estado;	
+}
+
+
+
+
+function verautorizacion(){
+	$( "#divautorizacion" ).toggle();
+}
+function verpapeleta(){
+	$( "#divpapeleta" ).toggle();
+}
+function verfichamedica(){
+	$("#divfichamedica").toggle();
+}
+
+function fn_registrar(){
+	 if (confirm("ESTA SEGURO DE REGISTRAR SU PRE-INSCRIPCIÓN")) {
+		 validar();
+	    }
+}
+
+
 function fn_subirFichero(){
     var file = $('[name="myPDF"]');
     var filename = $.trim(file.val());
@@ -261,6 +326,7 @@ function fn_upload_ajax2(vservlet){
   </script>
 <input type="hidden" id="contexto" name="contexto" value="<%=sWS%>">
 <input type="text" id="tipo" name="tipo" value="VACACIONES">
+<input type="text" id="id_persona" name="id_persona" value="${sessionScope.persona.idPer}">
 <input type="text" id="id_fichero1" name="id_fichero1" value="">
 <input type="text" id="id_fichero2" name="id_fichero2" value="">
 <input type="text" id="id_fichero3" name="id_fichero3" value="">
@@ -409,14 +475,14 @@ function fn_upload_ajax2(vservlet){
 											<div class="col s12">
 												<div class="row">
 													<div class="input-field col s6">
-														<select>
+														<select id="diasfranco">
 															<option value="" disabled selected>Dias de Franco</option>
 															<option value="P">PARES</option>
 															<option value="I">IMPARES</option>
 														</select> <label>Seleccione Dias de Franco</label>
 													</div>
 													<div class="input-field col s6">
-														<select>
+														<select id="messervicio">
 															<option value="" disabled selected>Seleccione Mes disponible para el Servicio</option>
 															<option value="1">Enero</option>
 															<option value="2">Febrero</option>
@@ -433,7 +499,7 @@ function fn_upload_ajax2(vservlet){
 														</select> <label>Seleccione Mes de Servicio</label>
 													</div>
 													<div class="input-field col s6">
-														<select>
+														<select id="añoservicio">
 															<option value="" disabled selected>Seleccione Año disponible para el Servicio</option>
 															<script>document.write(rellenaAnyos(2));</script>
 														</select> <label>Seleccione Año disponible para el Servicio</label>
@@ -441,6 +507,8 @@ function fn_upload_ajax2(vservlet){
 
 												</div>
 											</div>
+												<button class="waves-effect waves-light  btn" onclick="verautorizacion();">Adjuntar autorización</button>
+											<div id="divautorizacion" style="display:none">
 											<form id="fileForm">
 												<div class="form-group" align="center">
 													<label class="strong">Seleccione su Autorizacion</label>
@@ -454,10 +522,8 @@ function fn_upload_ajax2(vservlet){
 												<div class="video-container" style="clear: both" align="center">
 													<iframe id="viewer" frameborder="0" allowfullscreen> </iframe> 
 												</div>
-<!-- 												<div class="video-container"> -->
-<!-- 											  -->
-<!-- 											</div> -->
 											</form>
+											</div>
 										</div>
 									</div>
 
@@ -491,7 +557,7 @@ function fn_upload_ajax2(vservlet){
 			<div class="col s12">
 				<div class="row">
 					<div class="input-field col s6">
-						<select>
+						<select id="aptitud">
 							<option value="" disabled selected>Aptitud Médica</option>
 							<option value="A">A</option>
 							<option value="B">B</option>
@@ -499,13 +565,15 @@ function fn_upload_ajax2(vservlet){
 						</select> <label>Seleccione su aptitud Médica</label>
 					</div>
 					<div class="input-field col s6">
-						<input type="text" maxlength="20"> <label for="dob">Numero
+						<input type="text" maxlength="20" id="nrofichamedica"> <label for="dob">Numero
 							De Constancia de Ficha Médica</label>
 					</div>
 				</div>
+				<button class="waves-effect waves-light  btn" onclick="verfichamedica();">Adjuntar Constancia de Ficha Médica</button>
+				<div id="divfichamedica" style="display:none">
 				<form id="fileForm1">
 												<div class="form-group" align="center">
-												<label class="strong">Seleccione su Ficha médica</label>
+												<label class="strong">Seleccione su Constancia de Ficha Médica</label>
 													<input id="uploadPDF1" type="file" name="myPDF1"
 														onchange="PreviewImage1();" />&nbsp;
 													<button type="button" onclick="fn_subirFichero1();">
@@ -516,10 +584,8 @@ function fn_upload_ajax2(vservlet){
 												<div class="video-container" style="clear: both" align="center">
 													<iframe id="viewer1" frameborder="0" allowfullscreen> </iframe> 
 												</div>
-<!-- 												<div class="video-container"> -->
-<!-- 											  -->
-<!-- 											</div> -->
 											</form>
+											</div>
 			</div>
 		</div>
 	</div>
@@ -535,35 +601,49 @@ function fn_upload_ajax2(vservlet){
 			<div class="col s12">
 				<div class="row">
 					<div class="input-field col s4">
-						<input id="first_name" type="text" value="PISTOLA"
+						<input id="pistola" type="text" value="PISTOLA"
 							readonly="readonly"> <label for="Tipo">Tipo de
 							Armamento </label>
 					</div>
 
 					<div class="input-field col s4">
-						<input id="last_name" type="text" value=""> <label
+						<input id="serie" type="text" value=""> <label
 							for="Serie">Serie del Armamento</label>
 					</div>
 					<div class="input-field col s4">
-						<input id="last_name" type="text" value=""> <label
+						<input id="marca" type="text" value=""> <label
 							for="Marca">Marca del Armamento</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s4">
-						<input id="first_name" type="text" value=""> <label
+						<input id="calibre" type="text" value=""> <label
 							for="Calibre">Calibre </label>
 					</div>
 
 					<div class="input-field col s4">
-						<input id="last_name" type="text" value=""> <label
+						<input id="caf" type="text" value=""> <label
 							for="N° DE CAF">N° DE CAF</label>
 					</div>
 					<div class="input-field col s4">
-						<input id="last_name" type="text" value=""> <label
+						<input id="municion" type="text" value=""> <label
 							for="MUNICIÓN">CANT. DE MUNICIÓN</label>
 					</div>
 				</div>
+				<div class="row">
+					<div class="input-field col s6">
+						<input id="nrorevista" type="text" value=""> <label
+							for="N° Papeleta">Nro Papeleta Revista </label>
+					</div>
+
+					<div class="input-field col s6">
+						<input id="unidadrevista" type="text" value=""> <label
+							for="Unidad que emite papeleta">Unidad emite papeleta</label>
+					</div>
+				</div>
+				<button class="waves-effect waves-light  btn" onclick="verpapeleta();">Adjuntar Papeleta de Armamento</button>
+				
+				<div id="divpapeleta" style="display:none">
 				<form id="fileForm2">
 												<div class="form-group" align="center">
 													<label class="strong">Seleccione su Papeleta de Armamento</label>
@@ -577,10 +657,8 @@ function fn_upload_ajax2(vservlet){
 												<div class="video-container" style="clear: both" align="center">
 													<iframe id="viewer2" frameborder="0" allowfullscreen> </iframe> 
 												</div>
-<!-- 												<div class="video-container"> -->
-<!-- 											  -->
-<!-- 											</div> -->
 											</form>
+											</div>
 			</div>
 		</div>
 	</div>
@@ -594,35 +672,31 @@ function fn_upload_ajax2(vservlet){
 				<div class="row">
 					<div class="input-field col s4">
 						<i class="mdi-action-credit-card prefix"></i> <input
-							id="mdi-action-credit-card" type="text"
+							id="cuenta" type="text"
 							onkeypress="return solo_numeros(event);" maxlength="20">
 						<label for="mdi-action-credit-card">N° CUENTA DE AHORRO
 							BANCO DE LA NACIÓN</label>
 					</div>
 					<div class="input-field col s4">
 						<i class="mdi-communication-phone prefix"></i> <input
-							id="icon_telephone" type="text"
+							id="telefono" type="text"
 							onkeypress="return solo_numeros(event);" maxlength="9"> <label
 							for="icon_telephone">Telephone</label>
 					</div>
 					<div class="input-field col s4">
-						<i class="mdi-action-home prefix"></i> <input id="mdi-action-home"
+						<i class="mdi-action-home prefix"></i> <input id="domicilio"
 							type="text"> <label for="mdi-action-home">Domicilio</label>
 					</div>
 
 				</div>
-				<div class="row">
-					<div class="input-field col s12">
-						<i class="mdi-content-mail prefix"></i> <input
-							id="mdi-content-mail" type="text"> <label
-							for="mdi-content-mail">Correo</label>
-					</div>
-
-				</div>
-				</>
 			</div>
 		</div>
-
+</div>
+</div>
+<div class="col s12 m12 l12">
+	<div class="card-panel center">
+	<a class="btn btn-large waves-effect waves-light light-green darken-4" onclick="fn_registrar();">REGISTRAR PRE INSCRIPCIÓN</a>
+	</div>
 	</div>
 	<script type="text/javascript">
 	function PreviewImage2() {

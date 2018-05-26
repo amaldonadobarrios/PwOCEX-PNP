@@ -3,6 +3,7 @@
 	<persistence-unit name="PwOCEX-PNP" transaction-type="RESOURCE_LOCAL">
 		<class>entity.OcexCharla</class>
 		<class>entity.OcexFicher</class>
+		<class>entity.OcexPerPnp</class>
 		<properties>
 			<property name="eclipselink.jdbc.batch-writing" value="Oracle-JDBC"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@172.31.1.169:1521:esinpoldesa"/>

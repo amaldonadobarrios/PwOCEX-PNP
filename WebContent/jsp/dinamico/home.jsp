@@ -4,8 +4,8 @@
         <div class="card-content blue-text text-darken-2">
           <span class="card-title center-align"><h4>Sistema de Control del Traslado de Explosivos - OCEX PNP</h4></span>
           <p>Usuario : <STRONG>${sessionScope.usuario}</STRONG></p>
-      		<p>N° DNI: <STRONG>${sessionScope.dni}</STRONG></p>
-      		<p>Unidad: <STRONG>${sessionScope.unidad}</STRONG></p>
+      		<p>N° DNI: <STRONG>${sessionScope.persona.dniPer}</STRONG></p>
+      		<p>Unidad: <STRONG>${sessionScope.persona.nomUniPer}</STRONG></p>
         </div>
       </div>
     </div>

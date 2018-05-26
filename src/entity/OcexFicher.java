@@ -15,7 +15,7 @@ public class OcexFicher implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="OCEX_FICHER_IDFICHER_GENERATOR", sequenceName="SECFIC",allocationSize=1)
+	@SequenceGenerator(name="OCEX_FICHER_IDFICHER_GENERATOR", sequenceName="SECFICHER",allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="OCEX_FICHER_IDFICHER_GENERATOR")
 	@Column(name="ID_FICHER")
 	private long idFicher;
