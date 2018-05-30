@@ -13,4 +13,10 @@ public class OcexCharlaServiceImpl implements OcexCharlaService {
 		return dao.saveCharla(charla);
 	}
 
+	@Override
+	public int TieneCharlaActiva(String cip) {
+		// TODO Auto-generated method stub
+		return dao.TieneCharlaActiva(cip);
+	}
+
 }

@@ -24,5 +24,13 @@ public class LogicPersona {
 		OcexPerPnp per=serv.getOcexPerPnp(cip);
 		return per;
 	}
+	public int  saveOcexPersona (OcexPerPnp persona) {
+		OcexPerPnpService serv=new OcexPerPnpServiceImpl();
+		return serv.save(persona);
+	}
+	public int updateOcexPersona(OcexPerPnp persona) {
+		OcexPerPnpService serv=new OcexPerPnpServiceImpl();
+		return serv.update(persona);
+	}
 
 }

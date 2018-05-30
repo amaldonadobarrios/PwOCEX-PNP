@@ -51,8 +51,7 @@ function fnControlEvento(vevento, vvrespuesta) {
 						$("#foto").attr('src', '');
 						}
 					}
-	
-				//fin de if
+					//fin if
 			}
 		}
 	}

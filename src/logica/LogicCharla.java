@@ -26,6 +26,12 @@ public class LogicCharla {
 		rpta=service.saveCharla(charla);
 		return rpta;
 	}
+	public int validarcharlaxCIP(String cip) {
+		int rpta=0;
+		OcexCharlaService service= new OcexCharlaServiceImpl();
+		rpta=service.TieneCharlaActiva(cip);
+		return rpta;	
+	}
 	
 	
 

@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import logica.LogicCharla;
+
 /**
  * Servlet implementation class SPage
  */
@@ -133,13 +135,24 @@ public class SPage extends HttpServlet {
 	}
 
 	private void RegPreinscrip(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setAttribute("breadcrumb", "Registrar Preinscripción");
-		request.setAttribute("breadcrumb2", "En esta sección usted debera de ingresar información personal para posteriormente registrar su inscripción en las Oficinas de OCEX PNP");
-		request.setAttribute("body", "RegPreinscrip");
+		if (validarCharla(request)>0) {
+			request.setAttribute("breadcrumb", "Registrar Preinscripción");
+			request.setAttribute("breadcrumb2", "En esta sección usted debera de ingresar información personal para posteriormente registrar su inscripción en las Oficinas de OCEX PNP");
+			request.setAttribute("body", "RegPreinscrip");	
+		}else{
+			request.setAttribute("breadcrumb", "Registrar Preinscripción");
+			request.setAttribute("breadcrumb2", "No tiene Charla Registrada");
+			request.setAttribute("body", "NoCharla");	
+		};
 		forwar("jsp/template.jsp", request, response);
 		// TODO Auto-generated method stub
 		
+	}
+
+	private int validarCharla(HttpServletRequest request) {
+		HttpSession sesion = request.getSession();
+		String cip=(String) sesion.getAttribute("CIP");
+		return LogicCharla.getInstance().validarcharlaxCIP(cip);
 	}
 
 	private void RegCharla(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

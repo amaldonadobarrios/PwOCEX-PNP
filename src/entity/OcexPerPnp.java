@@ -15,7 +15,7 @@ public class OcexPerPnp implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="OCEX_PER_PNP_IDPER_GENERATOR", sequenceName="SECPNP",allocationSize=1)
+	@SequenceGenerator(name="OCEX_PER_PNP_IDPER_GENERATOR", sequenceName="SECPER",allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="OCEX_PER_PNP_IDPER_GENERATOR")
 	@Column(name="ID_PER")
 	private long idPer;

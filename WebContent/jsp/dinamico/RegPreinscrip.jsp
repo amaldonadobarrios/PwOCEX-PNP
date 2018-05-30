@@ -3,7 +3,118 @@
 	String sWS = request.getContextPath();
 %>
 
-
+<script>
+function fnEjecutarPeticionx(vservlet, jdata, evento) {
+	$.ajax({
+		url : vservlet,
+		method : 'POST',
+		data : jdata,
+		success : function(responseText) {
+			fnControlEventox(evento, responseText + '');
+		}
+	});
+}
+function fnControlEventox(vevento, vvrespuesta) {
+	if (vvrespuesta == 'ERROR_SESION') {
+		window.location = 'SPage';
+	} else {
+		var v_resultado = vvrespuesta + "";
+		if (v_resultado == 'NOSESION') {
+			window.location = 'SPage?action=login';
+		} else if (v_resultado == '') {
+			//vacio	
+		} else {
+			if (vevento == 'savePreinscripcion') {
+			var respuesta = v_resultado;
+			alert(respuesta);
+			document.getElementById("btnregistrar").disabled = false;
+				if(respuesta=='NOP'){
+				mensaje('NO VALIDO');
+				
+				}else{
+				
+				}
+			}
+			
+				//fin if
+		}
+	}
+}
+function redireccionarPagina() {
+window.location = "SPage?action=login";
+}
+function fnregistrar() {
+	if (validar()) {
+	var tipo= $('#tipo').val();
+	var fechainivac=$('#fechainivac').val();
+	fechainivac=atDate(fechainivac);
+	var txtdiasvac=$('#txtdiasvac').val();
+	var fechafinvac=$('#fechafinvac').val();
+	var fechainiservicio=$('#fechainiservicio').val();
+	fechainiservicio=atDate(fechainiservicio);
+	var txtdiasservicio= $('#txtdiasservicio').val();
+	var fechafinservicio= $('#fechafinservicio').val();	
+	var diasfranco = $('#diasfranco').val();
+	var messervicio =$('#messervicio').val();			
+	var añoservicio =$('#añoservicio').val();			
+	var id_fichero1= $('#id_fichero1').val();		
+	var aptitud= $('#aptitud').val();		
+	var nrofichamedica= $('#nrofichamedica').val();		
+	var pistola=$('#pistola').val();		
+	var serie=$('#serie').val();		
+	var marca =$('#marca').val();	
+	var calibre=$('#calibre').val();		
+	var caf=$('#caf').val();		
+	var municion= $('#municion').val();		
+	var nrorevista=$('#nrorevista').val();		
+	var unidadrevista=$('#unidadrevista').val();	
+	var cuenta=$('#cuenta').val();		
+	var telefono=$('#telefono').val();		
+	var domicilio=$('#domicilio').val();
+	var id_persona = $('#id_persona').val();
+	var id_fichero0 = $('#id_fichero0').val();
+	var id_fichero2= $('#id_fichero2').val();
+	var id_fichero3= $('#id_fichero3').val();
+	var contexto = document.getElementById("contexto").value;
+	document.getElementById("btnregistrar").disabled = true;
+	var vservlet = contexto + '/SPreinscripcion';
+ 		var txtevento = 'savePreinscripcion';
+ 		var jqdata = {
+ 			hdEvento : txtevento,
+ 			tipo :tipo,
+ 			fechainivac :fechainivac,
+ 			txtdiasvac :txtdiasvac,
+	 		fechafinvac :fechafinvac,
+		 	fechainiservicio:fechainiservicio,
+		 	txtdiasservicio:txtdiasservicio,
+ 			 fechafinservicio:fechafinservicio,
+ 			 diasfranco :diasfranco,
+ 			 messervicio :messervicio,		
+ 			 añoservicio :añoservicio,			
+ 			 id_fichero1:id_fichero1,	
+ 			 aptitud: aptitud,		
+ 			 nrofichamedica: nrofichamedica,		
+ 			 pistola:pistola,		
+ 			 serie:serie,		
+ 			 marca :marca,	
+ 			 calibre:calibre,		
+ 			 caf:caf,		
+ 			 municion:municion,		
+ 			 nrorevista:nrorevista,		
+ 			 unidadrevista:unidadrevista,	
+ 			 cuenta:cuenta,		
+ 			 telefono:telefono,	
+ 			 domicilio:domicilio,
+ 			 id_persona : id_persona,
+ 			 id_fichero0 :id_fichero0,
+ 			 id_fichero2: id_fichero2,
+ 			 id_fichero3:id_fichero3
+ 			 };
+ 		
+ 		fnEjecutarPeticionx(vservlet, jqdata, txtevento);
+	}
+}
+</script>
 <script type="text/javascript">
 function validar(){
 	var estado=true;
@@ -13,44 +124,153 @@ function validar(){
 			var fechainivac=$('#fechainivac').val();
 			fechainivac=atDate(fechainivac);
 			if (fechainivac=='') {
-				estado=false;
 				mensaje('Falta Seleccionar fecha de inicio de vacaciones');	
+				return false;
 			}
 			var txtdiasvac=$('#txtdiasvac').val();
+			if (txtdiasvac=='') {
+				mensaje('Falta indicar los dias de vacaciones');	
+				return false;
+			}
 			var fechafinvac=$('#fechafinvac').val();
+			if (fechafinvac=='') {
+				mensaje('Falta indicar fecha fin de vacaciones');	
+				return false;
+			}
 			var fechainiservicio=$('#fechainiservicio').val();
 			fechainiservicio=atDate(fechainiservicio);
+			if (fechainiservicio=='') {
+				mensaje('Falta indicar fecha inicio  disponible para el servicio de custodio');	
+				return false;
+			}
 			var txtdiasservicio= $('#txtdiasservicio').val();
+			if (txtdiasservicio=='') {
+				mensaje('Falta indicar dias  disponible para el servicio de custodio');	
+				return false;
+			}
 			var fechafinservicio= $('#fechafinservicio').val();	
-		}else if (tipo=='FRANCO') {
-			var diasfranco = $('#diasfranco').val();
-			var messervicio =$('#messervicio').val();
-			var añoservicio =$('#añoservicio').val();
+			if (fechafinservicio=='') {
+				mensaje('Falta indicar fecha fin disponible para el servicio de custodio');	
+				return false;
+			}
 		}
+		if (tipo=='FRANCO') {
+			var diasfranco = $('#diasfranco').val();
+			if (diasfranco==null) {
+				mensaje('Falta indicar que dia de Franco esta disponible para el servicio de custodio');	
+				return false;
+			}
+			var messervicio =$('#messervicio').val();
+			if (messervicio==null) {
+				mensaje('Falta indicar que el mes autorizado para el servicio de custodio');	
+				return false;
+			}
+			var añoservicio =$('#añoservicio').val();
+			if (añoservicio==null) {
+				mensaje('Falta indicar que el año autorizado para el servicio de custodio');	
+				return false;
+			}
+			var id_fichero1= $('#id_fichero1').val();
+			if (id_fichero1=='') {
+				mensaje('Falta adjuntar su autorización  de Franco');	
+				return false;
+			}
+		}
+		
 		var aptitud= $('#aptitud').val();
+		if (aptitud==null) {
+			mensaje('Falta indicar su aptitud médica');	
+			return false;
+		}
+		var nrofichamedica= $('#nrofichamedica').val();
+		if (nrofichamedica=='') {
+			mensaje('Falta indicar su número de ficha médica');	
+			return false;
+		}
 		var pistola=$('#pistola').val();
+		if (pistola=='') {
+			mensaje('Falta indicar pistola');	
+			return false;
+		}
 		var serie=$('#serie').val();
+		if (serie=='') {
+			mensaje('Falta indicar  el numero de serie del arma');	
+			return false;
+		}
 		var marca =$('#marca').val();
+		if (marca=='') {
+			mensaje('Falta indicar  la marca del arma');	
+			return false;
+		}
 		var calibre=$('#calibre').val();
+		if (calibre=='') {
+			mensaje('Falta indicar  el calibre del arma');	
+			return false;
+		}
 		var caf=$('#caf').val();
+		if (caf=='') {
+			mensaje('Falta indicar el número de CAF');	
+			return false;
+		}
 		var municion= $('#municion').val();
+		if (municion=='') {
+			mensaje('Falta indicar la munición  a emplear');	
+			return false;
+		}
 		var nrorevista=$('#nrorevista').val();
+		if (nrorevista=='') {
+			mensaje('Falta indicar  el numero de la papeleta de revista de armamento');	
+			return false;
+		}
 		var unidadrevista=$('#unidadrevista').val();
+		if (unidadrevista=='') {
+			mensaje('Falta indicar la unidad que emite la papeleta de revista');	
+			return false;
+		}
 		var cuenta=$('#cuenta').val();
+		if (cuenta=='') {
+			mensaje('Falta indicar su número de cuenta de ahorro');	
+			return false;
+		}
 		var telefono=$('#telefono').val();
+		if (telefono=='') {
+			mensaje('Falta indicar su número celular');	
+			return false;
+		}
 		var domicilio=$('#domicilio').val();
+		if (domicilio=='') {
+			mensaje('Falta indicar su domicilio actual');	
+			return false;
+		}
+		
+		
 	}else{
 		estado=false;
 		mensaje('Falta Seleccionar la modalidad del servicio');
 	}
 	var id_persona = $('#id_persona').val();
-	var id_fichero1= $('#id_fichero1').val();
+	var id_fichero0 = $('#id_fichero0').val();
 	var id_fichero2= $('#id_fichero2').val();
+	if (id_fichero2=='') {
+		mensaje('Falta adjuntar su Constancia de Ficha médica');	
+		return false;
+	}
 	var id_fichero3= $('#id_fichero3').val();
+	if (id_fichero3=='') {
+		mensaje('Falta adjuntar su Papeleta de revista de arma');	
+		return false;
+	}
+	var cbox2=$("#cbox2").is(":checked");
+	if (!cbox2) {
+		mensaje('Falta ACEPTAR, la declaración de veracidad de los datos');	
+		return false;
+	}
 	return estado;	
 }
 
-
+function vervacaciones(){
+	$( "#divvacaciones" ).toggle();
+}
 
 
 function verautorizacion(){
@@ -65,7 +285,9 @@ function verfichamedica(){
 
 function fn_registrar(){
 	 if (confirm("ESTA SEGURO DE REGISTRAR SU PRE-INSCRIPCIÓN")) {
-		 validar();
+		
+			fnregistrar();	
+		
 	    }
 }
 
@@ -112,7 +334,8 @@ function fn_upload_ajax(vservlet){
 				var contexto = document.getElementById("contexto").value;
 	    		var load ='<img  height="50px" width="50px" src="'+contexto+'/images/ocex/check.jpg">';
 	    		$('#msjPDF').html(load);
-	    		document.getElementById("id_fichero1").value=data;		
+	    		document.getElementById("id_fichero1").value=data;
+	    		setTimeout('verautorizacion()',1000);
 			}
     		
     		
@@ -166,7 +389,8 @@ function fn_upload_ajax1(vservlet){
 				var contexto = document.getElementById("contexto").value;
 	    		var load ='<img  height="50px" width="50px" src="'+contexto+'/images/ocex/check.jpg">';
 	    		$('#msjPDF1').html(load);
-	    		document.getElementById("id_fichero2").value=data;		
+	    		document.getElementById("id_fichero2").value=data;	
+	    		setTimeout('verfichamedica()',1000);
 			}
     		
     		
@@ -220,7 +444,63 @@ function fn_upload_ajax2(vservlet){
 				var contexto = document.getElementById("contexto").value;
 	    		var load ='<img  height="50px" width="50px" src="'+contexto+'/images/ocex/check.jpg">';
 	    		$('#msjPDF2').html(load);
-	    		document.getElementById("id_fichero3").value=data;		
+	    		document.getElementById("id_fichero3").value=data;	
+	    		setTimeout('verpapeleta()',1000);
+			}
+    		
+    		
+		}
+      }).fail(function(jqXHR, textStatus) {
+    	  //alert(jqXHR.responseText);
+    	  alert('File upload failed ...');
+      });
+}
+</script>
+<script>
+function fn_subirFichero0(){
+    var file = $('[name="myPDF0"]');
+    var filename = $.trim(file.val());
+    if (filename !== '') {
+    	 if (updateSize('uploadPDF0') < 5000000) {
+    		 var contexto = document.getElementById("contexto").value;
+    			var vservlet = contexto + '/SFichero';
+    	 		var load='<img  height="100px" width="100px" src="'+contexto+'/images/ocex/reloj.gif">';
+    	 	     	$('#msjPDF0').html(load);
+    	 	     	fn_upload_ajax0(vservlet);
+         } else {
+        	 var contexto = document.getElementById("contexto").value;
+         	 $('#viewer0').attr('src', 'about:blank');
+              $('#uploadPDF0').val('');
+              var load='<img  height="50px" width="50px" src="'+contexto+'/images/ocex/error.png">';
+             document.getElementById("msjPDF0").innerHTML =  load+' ERROR, ARCHIVO SUPERA LOS 5MB';
+         }
+    	
+    	
+    }
+}
+function fn_upload_ajax0(vservlet){
+	$.ajax({
+        url: vservlet,
+        type: "POST",
+        data: new FormData(document.getElementById("fileForm0")),
+        enctype: 'multipart/form-data',
+        processData: false,
+        contentType: false,
+      }).done(function(data) {
+    	//alert(data);
+    	if (data!=null) {
+    		if (data=='0') {
+    			var contexto = document.getElementById("contexto").value;
+            	 $('#viewer0').attr('src', 'about:blank');
+                 $('#uploadPDF0').val('');
+                 var load='<img  height="50px" width="50px" src="'+contexto+'/images/ocex/error.png">';
+                document.getElementById("msjPDF0").innerHTML =  load+' ERROR, NOMBRE MUY EXTENSO';	
+			}else{
+				var contexto = document.getElementById("contexto").value;
+	    		var load ='<img  height="50px" width="50px" src="'+contexto+'/images/ocex/check.jpg">';
+	    		$('#msjPDF0').html(load);
+	    		document.getElementById("id_fichero0").value=data;	
+	             setTimeout('vervacaciones()',1000);
 			}
     		
     		
@@ -325,11 +605,12 @@ function fn_upload_ajax2(vservlet){
 
   </script>
 <input type="hidden" id="contexto" name="contexto" value="<%=sWS%>">
-<input type="text" id="tipo" name="tipo" value="VACACIONES">
-<input type="text" id="id_persona" name="id_persona" value="${sessionScope.persona.idPer}">
-<input type="text" id="id_fichero1" name="id_fichero1" value="">
-<input type="text" id="id_fichero2" name="id_fichero2" value="">
-<input type="text" id="id_fichero3" name="id_fichero3" value="">
+<input type="hidden" id="tipo" name="tipo" value="VACACIONES">
+<input type="hidden" id="id_persona" name="id_persona" value="${sessionScope.persona.idPer}">
+<input type="hidden" id="id_fichero0" name="id_fichero0" value="">
+<input type="hidden" id="id_fichero1" name="id_fichero1" value="">
+<input type="hidden" id="id_fichero2" name="id_fichero2" value="">
+<input type="hidden" id="id_fichero3" name="id_fichero3" value="">
 <div id="preselecting-tab" class="section">
 	<div class="card-panel">
 		<h4 class="header">Seleccione su modalidad de Pre-inscripción</h4>
@@ -345,7 +626,7 @@ function fn_upload_ajax2(vservlet){
 								data-tooltip="Seleccione aqui si estará disponible de vacaciones"
 								href="#vaca" onclick="fn_tipo('VACACIONES')">VACACIONES</a></li>
 							<li class="tab col s3"><a
-								class="white-text red darken-1 waves-effect waves-light tooltipped "
+								class="white-text green darken-1 waves-effect waves-light tooltipped "
 								data-position="center" data-delay="50"
 								data-tooltip="Seleccione aqui si estará disponible en sus dias de franco"
 								href="#franco" onclick="fn_tipo('FRANCO')">FRANCO</a></li>
@@ -430,6 +711,29 @@ function fn_upload_ajax2(vservlet){
 															for="Fecha Fin Servicio Custodio">Fecha Fin
 															Servicio Custodio</label>
 													</div>
+													
+											<div class="row">
+											<div class="col s6"> 
+											<button class="btn waves-effect waves-light indigo" onclick="vervacaciones();">Adjuntar Papeleta de Vacaciones</button>
+											</div>
+											<div id="msjPDF0" class="col s6"></div>
+											</div>
+											<div id="divvacaciones" style="display:none">
+											<form id="fileForm0">
+												<div class="form-group" align="center">
+													<label class="strong">Seleccione su Papeleta de Vacaciones</label>
+													<input id="uploadPDF0" type="file" name="myPDF0"
+														onchange="PreviewImage0();" />&nbsp;
+													<button type="button" onclick="fn_subirFichero0();">
+														 Guardar fichero
+													</button>
+													
+												</div>
+												<div class="video-container" style="clear: both" align="center">
+													<iframe id="viewer0" frameborder="0" allowfullscreen> </iframe> 
+												</div>
+											</form>
+											</div>
 												</div>
 											</div>
 										</div>
@@ -440,7 +744,7 @@ function fn_upload_ajax2(vservlet){
 
 							</div>
 						</div>
-						<div id="franco" class="col s12  red lighten-3">
+						<div id="franco" class="col s12  green lighten-3">
 							<div class="row">
 								<div class="col s12 m12 l12">
 									<div class="card-panel">
@@ -507,7 +811,12 @@ function fn_upload_ajax2(vservlet){
 
 												</div>
 											</div>
-												<button class="waves-effect waves-light  btn" onclick="verautorizacion();">Adjuntar autorización</button>
+											<div class="row">
+											<div class="col s6"> 
+											<button class="btn waves-effect waves-light indigo" onclick="verautorizacion();">Adjuntar autorización</button>
+											</div>
+											<div id="msjPDF" class="col s6"></div>
+											</div>
 											<div id="divautorizacion" style="display:none">
 											<form id="fileForm">
 												<div class="form-group" align="center">
@@ -517,7 +826,7 @@ function fn_upload_ajax2(vservlet){
 													<button type="button" onclick="fn_subirFichero();">
 														 Guardar fichero
 													</button>
-													<div id="msjPDF"></div>
+													
 												</div>
 												<div class="video-container" style="clear: both" align="center">
 													<iframe id="viewer" frameborder="0" allowfullscreen> </iframe> 
@@ -569,7 +878,13 @@ function fn_upload_ajax2(vservlet){
 							De Constancia de Ficha Médica</label>
 					</div>
 				</div>
-				<button class="waves-effect waves-light  btn" onclick="verfichamedica();">Adjuntar Constancia de Ficha Médica</button>
+				<div class="row">
+				<div class="col s6"> 
+				<button class="btn waves-effect waves-light indigo" onclick="verfichamedica();">Adjuntar Constancia de Ficha Médica</button>
+				</div>
+				<div id="msjPDF1" class="col s6"></div>
+				</div>
+				</div>
 				<div id="divfichamedica" style="display:none">
 				<form id="fileForm1">
 												<div class="form-group" align="center">
@@ -579,7 +894,7 @@ function fn_upload_ajax2(vservlet){
 													<button type="button" onclick="fn_subirFichero1();">
 														 Guardar fichero
 													</button>
-													<div id="msjPDF1"></div>
+													
 												</div>
 												<div class="video-container" style="clear: both" align="center">
 													<iframe id="viewer1" frameborder="0" allowfullscreen> </iframe> 
@@ -641,8 +956,13 @@ function fn_upload_ajax2(vservlet){
 							for="Unidad que emite papeleta">Unidad emite papeleta</label>
 					</div>
 				</div>
-				<button class="waves-effect waves-light  btn" onclick="verpapeleta();">Adjuntar Papeleta de Armamento</button>
-				
+				<div class="row">
+				<div class="col s6"> 
+				<button class="btn waves-effect waves-light indigo" onclick="verpapeleta();">Adjuntar Papeleta de Armamento</button>
+				</div>
+				<div id="msjPDF2" class="col s6">
+				</div>
+				</div>
 				<div id="divpapeleta" style="display:none">
 				<form id="fileForm2">
 												<div class="form-group" align="center">
@@ -652,7 +972,7 @@ function fn_upload_ajax2(vservlet){
 													<button type="button" onclick="fn_subirFichero2();">
 														 Guardar fichero
 													</button>
-													<div id="msjPDF2"></div>
+													
 												</div>
 												<div class="video-container" style="clear: both" align="center">
 													<iframe id="viewer2" frameborder="0" allowfullscreen> </iframe> 
@@ -695,7 +1015,10 @@ function fn_upload_ajax2(vservlet){
 </div>
 <div class="col s12 m12 l12">
 	<div class="card-panel center">
-	<a class="btn btn-large waves-effect waves-light light-green darken-4" onclick="fn_registrar();">REGISTRAR PRE INSCRIPCIÓN</a>
+	<div class="row">
+	<input type="checkbox" id="cbox2" value="1"> <label for="cbox2">DECLARO QUE, TODOS LOS DATOS MOSTRADOS  E INGRESADOS SON VÁLIDOS</label>
+	</div>
+	<button class="btn btn-large waves-effect waves-light light-green darken-4" onclick="fn_registrar();" id="btnregistrar">REGISTRAR PRE INSCRIPCIÓN</button>
 	</div>
 	</div>
 	<script type="text/javascript">
@@ -728,6 +1051,22 @@ function fn_upload_ajax2(vservlet){
 	            } else {
 	                $('#viewer1').attr('src', 'about:blank');
 	                $('#uploadPDF1').val('');
+	            }
+	        }
+	    }
+	   function PreviewImage0() {
+	    	$('#msjPDF0').html('');
+	        var file = $('[name="myPDF0"]');
+	        var filename = $.trim(file.val());
+	        if (filename !== '') {
+	            if (isJpg(filename) || isPdf(filename)) {
+	                $('#viewer0').attr('src', 'about:blank');
+	                pdffile = document.getElementById("uploadPDF0").files[0];
+	                pdffile_url = URL.createObjectURL(pdffile);
+	                $('#viewer0').attr('src', pdffile_url);
+	            } else {
+	                $('#viewer0').attr('src', 'about:blank');
+	                $('#uploadPDF0').val('');
 	            }
 	        }
 	    }
@@ -852,13 +1191,18 @@ function fn_upload_ajax2(vservlet){
 	}
 
 	function atDate(date) {
-		var d = new Date(date), month = '' + (d.getMonth() + 1), day = ''
+		if (date!='') {
+			var d = new Date(date), month = '' + (d.getMonth() + 1), day = ''
 				+ d.getDate(), year = d.getFullYear();
 
 		if (month.length < 2)
 			month = '0' + month;
 		if (day.length < 2)
-			day = '0' + day;
+			day = '0' + day;	
+		}else{
+			return '';
+		}
+		
 
 		return [ day, month, year ].join('-');
 	}

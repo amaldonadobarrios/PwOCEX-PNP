@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import entity.OcexPerPnp;
+import logica.LogicPersona;
+import logica.LogicaPreinscripcion;
 import util.HtmlUtil;
 
 /**
@@ -16,19 +19,21 @@ import util.HtmlUtil;
 @WebServlet("/SPreinscripcion")
 public class SPreinscripcion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SPreinscripcion() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public SPreinscripcion() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		System.out.println(this.getClass().getName());
 		HttpSession sesion = request.getSession();
 		String ID = (String) sesion.getAttribute("ID");
@@ -39,14 +44,9 @@ public class SPreinscripcion extends HttpServlet {
 					String evento = request.getParameter("hdEvento");
 					if (evento != null || evento != "") {
 						switch (evento) {
-						case "RegPreinscripcion":
-							System.out.println("hdEvento :  RegPreinscripcion");
-							try {
-								RegPreinscripcion(request, response);
-							} catch (Exception e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
+						case "savePreinscripcion":
+							System.out.println("hdEvento :  savePreinscripcion");
+							savePreinscripcion(request, response);
 							break;
 						default:
 							break;
@@ -71,36 +71,85 @@ public class SPreinscripcion extends HttpServlet {
 			HtmlUtil.getInstance().escrituraHTML(response, "NOSESION");
 
 		}
-		
-		
-		
-		
-		
-		
-		
+
 	}
 
-	private void RegPreinscripcion(HttpServletRequest request, HttpServletResponse response) {
+	private void savePreinscripcion(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("void savePreinscripcion");
+		String rpta = null;
+		String tipo = request.getParameter("tipo");
+		String fechainivac = request.getParameter("fechainivac");
+		String txtdiasvac = request.getParameter("txtdiasvac");
+		String fechafinvac = request.getParameter("fechafinvac");
+		String fechainiservicio = request.getParameter("fechainiservicio");
+		String txtdiasservicio = request.getParameter("txtdiasservicio");
+		String fechafinservicio = request.getParameter("fechafinservicio");
+		String diasfranco = request.getParameter("diasfranco");
+		String messervicio = request.getParameter("messervicio");
+		String añoservicio = request.getParameter("añoservicio");
+		String id_fichero1 = request.getParameter("id_fichero1") != null ? request.getParameter("id_fichero1") : "";
+		String aptitud = request.getParameter("aptitud");
+		String nrofichamedica = request.getParameter("nrofichamedica");
+		String pistola = request.getParameter("pistola");
+		String serie = request.getParameter("serie");
+		String marca = request.getParameter("marca");
+		String calibre = request.getParameter("calibre");
+		String caf = request.getParameter("caf");
+		String municion = request.getParameter("municion");
+		String nrorevista = request.getParameter("nrorevista");
+		String unidadrevista = request.getParameter("unidadrevista");
+		String cuenta = request.getParameter("cuenta");
+		String telefono = request.getParameter("telefono");
+		String domicilio = request.getParameter("domicilio");
+		String id_persona = request.getParameter("id_persona").trim();
+		String id_fichero0 = request.getParameter("id_fichero0")!= null ? request.getParameter("id_fichero0") : "";
+		String id_fichero2 = request.getParameter("id_fichero2")!= null ? request.getParameter("id_fichero2") : "";
+		String id_fichero3 = request.getParameter("id_fichero3")!= null ? request.getParameter("id_fichero3") : "";
 
-		System.out.println("void RegPreinscripcion(");
+		// VERIFICAR PERSONA
+		int idPersona = Integer.parseInt(id_persona);
+		HttpSession sesion = request.getSession();
+		String Usuario=(String) sesion.getAttribute("CIP");
+		OcexPerPnp persona = new OcexPerPnp();
+		persona = (OcexPerPnp) sesion.getAttribute("persona");
+		persona.setTelCelPer(telefono);
+		persona.setDomPer(domicilio);
+		persona.setCtaAhorPer(cuenta);
+		persona.setUsuReg((String) sesion.getAttribute("CIP"));
+		if (idPersona > 0) {
+			// actualiza
+			LogicPersona.getInstance().updateOcexPersona(persona);
+		} else {
+			// crea
+			idPersona = LogicPersona.getInstance().saveOcexPersona(persona);
+		}
+		// GRABAR LA PREINSCRIPCION COMO TRANSACCION
+
+		boolean a = LogicaPreinscripcion.getInstance().Grabar_Preinscripcion(tipo, fechainivac, txtdiasvac, fechafinvac,
+				fechainiservicio, txtdiasservicio, fechafinservicio, diasfranco, messervicio, añoservicio, id_fichero1,
+				aptitud, nrofichamedica, pistola, serie, marca, calibre, caf, municion, nrorevista, unidadrevista,
+				cuenta, telefono, domicilio, idPersona, id_fichero0, id_fichero2, id_fichero3, Usuario );
 		
-		
-		
-		
+		System.out.println("EL RESULTADO DEL TEST ES: " + a);
+		HtmlUtil.getInstance().escrituraHTML(response, a+"");
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

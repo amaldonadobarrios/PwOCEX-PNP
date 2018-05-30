@@ -56,7 +56,6 @@
   <!-- End Page Loading -->
 
 
-
   <div id="login-page" class="row">
     <div class="col s12 z-depth-4 card-panel">
       <form class="login-form" data-toggle="validator" role="form" action="SSeguridad"
