@@ -31,5 +31,12 @@ public class LogicaPreinscripcion {
 				aptitud, nrofichamedica, pistola, serie, marca, calibre, caf, municion, nrorevista, unidadrevista,
 				cuenta, telefono, domicilio, idPersona, id_fichero0, id_fichero2, id_fichero3, usuario );
 	}
+	
+	public int  consultainscripcionok(int id_per) {
+		int i=0;
+		OcexPreinscripcionService service =new OcexPreinscripcionServiceImpl();
+		i=service.consultainscripcionok(id_per);
+		return i;
+	}
 
 }

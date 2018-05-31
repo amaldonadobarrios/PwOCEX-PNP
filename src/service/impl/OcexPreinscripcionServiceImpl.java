@@ -19,5 +19,10 @@ OcexPreinscripcionDAO dao=new OcexPreinscripcionDAOImpl();
 				aptitud, nrofichamedica, pistola, serie, marca, calibre, caf, municion, nrorevista, unidadrevista,
 				cuenta, telefono, domicilio, idPersona,  id_fichero0, id_fichero2, id_fichero3,usuario);
 	}
+	@Override
+	public int consultainscripcionok(int id_per) {
+		// TODO Auto-generated method stub
+		return dao.consultainscripcionok(id_per);
+	}
 
 }

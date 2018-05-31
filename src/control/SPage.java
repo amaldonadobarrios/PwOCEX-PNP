@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import entity.OcexPerPnp;
 import logica.LogicCharla;
+import logica.LogicaPreinscripcion;
 
 /**
  * Servlet implementation class SPage
@@ -136,9 +138,17 @@ public class SPage extends HttpServlet {
 
 	private void RegPreinscrip(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (validarCharla(request)>0) {
-			request.setAttribute("breadcrumb", "Registrar Preinscripción");
-			request.setAttribute("breadcrumb2", "En esta sección usted debera de ingresar información personal para posteriormente registrar su inscripción en las Oficinas de OCEX PNP");
-			request.setAttribute("body", "RegPreinscrip");	
+			int id_preinscripcion=ValidarPreInscrito(request);
+			if (id_preinscripcion>0) {
+				request.setAttribute("breadcrumb", "Preinscripción Registrada");
+				request.setAttribute("id_preinscripcion", id_preinscripcion);
+				request.setAttribute("breadcrumb2", "Preinscripcion Registrada");
+				request.setAttribute("body", "PreinOK");		
+			}else {
+				request.setAttribute("breadcrumb", "Registrar Preinscripción");
+				request.setAttribute("breadcrumb2", "En esta sección usted debera de ingresar información personal para posteriormente registrar su inscripción en las Oficinas de OCEX PNP");
+				request.setAttribute("body", "RegPreinscrip");		
+			}
 		}else{
 			request.setAttribute("breadcrumb", "Registrar Preinscripción");
 			request.setAttribute("breadcrumb2", "No tiene Charla Registrada");
@@ -147,6 +157,19 @@ public class SPage extends HttpServlet {
 		forwar("jsp/template.jsp", request, response);
 		// TODO Auto-generated method stub
 		
+	}
+
+	private int ValidarPreInscrito(HttpServletRequest request) {
+		int id_preinscripcion=0;
+		HttpSession sesion = request.getSession();
+		OcexPerPnp persona = new OcexPerPnp();
+		persona = (OcexPerPnp) sesion.getAttribute("persona");
+		if (persona.getIdPer()>0) {
+			id_preinscripcion=LogicaPreinscripcion.getInstance().consultainscripcionok((int) persona.getIdPer());	
+		}else {
+			id_preinscripcion=0;
+		}
+		return id_preinscripcion;
 	}
 
 	private int validarCharla(HttpServletRequest request) {

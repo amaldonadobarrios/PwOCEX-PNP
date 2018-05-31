@@ -26,19 +26,22 @@ function fnControlEventox(vevento, vvrespuesta) {
 		} else {
 			if (vevento == 'savePreinscripcion') {
 			var respuesta = v_resultado;
-			alert(respuesta);
 			document.getElementById("btnregistrar").disabled = false;
-				if(respuesta=='NOP'){
-				mensaje('NO VALIDO');
-				
-				}else{
-				
+				if(respuesta=='true'){
+					document.getElementById("btnregistrar").disabled = true;
+					$('#modal1').openModal()
+					//setTimeout('redireccionarhome()',2000);	 
+				}else {
+				mensaje('ERROR, NO SE REGISTRO');
 				}
 			}
 			
 				//fin if
 		}
 	}
+}
+function redireccionarhome(){
+window.location = 'SPage?action=pagehome';
 }
 function redireccionarPagina() {
 window.location = "SPage?action=login";
@@ -615,7 +618,6 @@ function fn_upload_ajax0(vservlet){
 	<div class="card-panel">
 		<h4 class="header">Seleccione su modalidad de Pre-inscripción</h4>
 		<div class="row">
-
 			<div class="col s12 m12 l12">
 				<div class="row">
 					<div class="col s12">
@@ -941,7 +943,7 @@ function fn_upload_ajax0(vservlet){
 							for="N° DE CAF">N° DE CAF</label>
 					</div>
 					<div class="input-field col s4">
-						<input id="municion" type="text" value=""> <label
+						<input id="municion" type="text" value="50" readonly="readonly"> <label
 							for="MUNICIÓN">CANT. DE MUNICIÓN</label>
 					</div>
 				</div>
@@ -1021,6 +1023,25 @@ function fn_upload_ajax0(vservlet){
 	<button class="btn btn-large waves-effect waves-light light-green darken-4" onclick="fn_registrar();" id="btnregistrar">REGISTRAR PRE INSCRIPCIÓN</button>
 	</div>
 	</div>
+	
+	<div id="modals-demo" class="section">
+            <div class="row">
+              <div class="col s12 m8 l9">
+                <div id="modal1" class="modal">
+                  <div class="modal-content teal white-text" align="center">
+                                     <p><strong>PRE- INSCRIPCIÓN REGISTRADA CON ÉXITO!!</strong></p>
+                <p><strong>ACERQUESE A LA  OCEX PNP PARA VALIDAR SU INSCRIPCIÓN</strong></p>
+                <p><strong>DESCARGANDO FORMATOS.............</strong></p>
+                  </div>
+                  <div class="modal-footer teal lighten-4">
+                    <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">ACEPTAR</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+	
+          
 	<script type="text/javascript">
 	function PreviewImage2() {
     	$('#msjPDF2').html('');

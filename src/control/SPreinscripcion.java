@@ -76,7 +76,7 @@ public class SPreinscripcion extends HttpServlet {
 
 	private void savePreinscripcion(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("void savePreinscripcion");
-		String rpta = null;
+		boolean a =false;
 		String tipo = request.getParameter("tipo");
 		String fechainivac = request.getParameter("fechainivac");
 		String txtdiasvac = request.getParameter("txtdiasvac");
@@ -92,15 +92,15 @@ public class SPreinscripcion extends HttpServlet {
 		String nrofichamedica = request.getParameter("nrofichamedica");
 		String pistola = request.getParameter("pistola");
 		String serie = request.getParameter("serie");
-		String marca = request.getParameter("marca");
+		String marca = request.getParameter("marca").toUpperCase();
 		String calibre = request.getParameter("calibre");
 		String caf = request.getParameter("caf");
 		String municion = request.getParameter("municion");
 		String nrorevista = request.getParameter("nrorevista");
-		String unidadrevista = request.getParameter("unidadrevista");
+		String unidadrevista = request.getParameter("unidadrevista").toUpperCase();
 		String cuenta = request.getParameter("cuenta");
 		String telefono = request.getParameter("telefono");
-		String domicilio = request.getParameter("domicilio");
+		String domicilio = request.getParameter("domicilio").toUpperCase();
 		String id_persona = request.getParameter("id_persona").trim();
 		String id_fichero0 = request.getParameter("id_fichero0")!= null ? request.getParameter("id_fichero0") : "";
 		String id_fichero2 = request.getParameter("id_fichero2")!= null ? request.getParameter("id_fichero2") : "";
@@ -122,10 +122,12 @@ public class SPreinscripcion extends HttpServlet {
 		} else {
 			// crea
 			idPersona = LogicPersona.getInstance().saveOcexPersona(persona);
+			persona.setIdPer(idPersona);
+			sesion.setAttribute("persona", persona);
 		}
 		// GRABAR LA PREINSCRIPCION COMO TRANSACCION
 
-		boolean a = LogicaPreinscripcion.getInstance().Grabar_Preinscripcion(tipo, fechainivac, txtdiasvac, fechafinvac,
+		a = LogicaPreinscripcion.getInstance().Grabar_Preinscripcion(tipo, fechainivac, txtdiasvac, fechafinvac,
 				fechainiservicio, txtdiasservicio, fechafinservicio, diasfranco, messervicio, añoservicio, id_fichero1,
 				aptitud, nrofichamedica, pistola, serie, marca, calibre, caf, municion, nrorevista, unidadrevista,
 				cuenta, telefono, domicilio, idPersona, id_fichero0, id_fichero2, id_fichero3, Usuario );
