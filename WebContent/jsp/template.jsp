@@ -51,6 +51,7 @@
   <!--dropify-->
   <link href="js/plugins/dropify/css/dropify.min.css" type="text/css" rel="stylesheet" media="screen,projection">
 
+<link href="css/ocex.css" type="text/css" rel="stylesheet" >
 </head>
 
 <body>
@@ -171,10 +172,35 @@
 	<script type="text/javascript" src="js/serverJS/controller.js"></script>
 	<script type="text/javascript" src="js/dirtexto.js"></script>
 	<script type="text/javascript" src="js/validator.js"></script>
+	
+	
+	
+  <link rel="stylesheet" href="js/jsquery/jquery-ui.css">
+  <link rel="stylesheet" href="js/jsquery/jquery-ui.themedark.css">
+<!--   <script src="js/jsquery/jquery.js"></script> -->
+  <script src="js/jsquery/jquery-ui.js"></script>
 </body>
 <script type="text/javascript">
 	function mensaje(msj) {
 		Materialize.toast(msj, 4000, 'rounded');
 	}
+// 	 $( function() {
+// 		    $( "#tabs" ).tabs({
+// 		      event: "mouseover"
+// 		    });
+// 		  } ); 
+	 
+	  $( function() {
+    $( "#datepicker" ).datepicker();
+    $( "#datepicker1" ).datepicker();
+    $( "#datepicker2" ).datepicker();
+    $( "#datepicker3" ).datepicker();
+    $( "#datepicker4" ).datepicker();
+  } );
+	  $( function() {
+	    $( "#tabs" ).tabs();
+	  } );
+	 
 </script>
+
 </html>

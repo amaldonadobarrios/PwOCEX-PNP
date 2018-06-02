@@ -54,8 +54,8 @@ public class SPage extends HttpServlet {
 					case "RegPreinscrip":
 						this.RegPreinscrip(request,response);
 						break;
-					case "RegDoc":
-						this.RegDoc(request,response);
+					case "RevDoc":
+						this.RevDoc(request,response);
 						break;
 					case "RegGt":
 						this.RegGt(request,response);
@@ -127,10 +127,10 @@ public class SPage extends HttpServlet {
 		
 	}
 
-	private void RegDoc(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void RevDoc(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("breadcrumb", "Registrar Documentacion");
 		request.setAttribute("breadcrumb2", "PROCEDER A VERIFICAR LA DOCUMENTACION COLOCANDO CHECKS");
-		request.setAttribute("body", "RegDoc");
+		request.setAttribute("body", "RevDoc");
 		forwar("jsp/template.jsp", request, response);
 		// TODO Auto-generated method stub
 		

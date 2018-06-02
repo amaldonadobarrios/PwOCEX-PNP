@@ -131,4 +131,125 @@ public class OcexPreinscripcionDAOImpl implements OcexPreinscripcionDAO {
 		}
 		return id_persona;
 	}
+
+	@Override
+	public String consultapreinscripcionxCip(String Cip) {
+		String  respuesta = null;
+		String tipo ;
+		String fechainivac;
+		String txtdiasvac ;
+		String fechafinvac;
+		String fechainiservicio;
+		String txtdiasservicio ;
+		String fechafinservicio;
+		String diasfranco;
+		String messervicio;
+		String añoservicio;
+		String id_fichero1 ;
+		String aptitud ;
+		String nrofichamedica ;
+		String pistola ;
+		String serie ;
+		String marca ;
+		String calibre; 
+		String caf ;
+		String municion;
+		String nrorevista ;
+		String unidadrevista;
+		String cuenta ;
+		String telefono ;
+		String domicilio ;
+		String query = "SELECT PRE.ID_PRE,\r\n" + 
+				"  PRE.MOD_PRE,\r\n" + 
+				"  PRE.F_MES,\r\n" + 
+				"  PRE.V_INI_CUS,\r\n" + 
+				"  PRE.V_FIN_CUS,\r\n" + 
+				"  PRE.ID_PER,\r\n" + 
+				"  PRE.F_ANIO,\r\n" + 
+				"  PRE.F_DIAS_FRANCO,\r\n" + 
+				"  PRE.V_CANT_CUS,\r\n" + 
+				"  PERSONA.ID_PER,\r\n" + 
+				"  PERSONA.NOM_PER,\r\n" + 
+				"  PERSONA.APE_PAT_PER,\r\n" + 
+				" PERSONA.APE_MAT_PER,\r\n" + 
+				" PERSONA.GRADO_PER,\r\n" + 
+				"  PERSONA.DOM_PER,\r\n" + 
+				"  PERSONA.NOM_UNI_PER,\r\n" + 
+				"  PERSONA.FEC_NAC,\r\n" + 
+				"  PERSONA.GEN_PER,\r\n" + 
+				"  PERSONA.DNI_PER,\r\n" + 
+				"  PERSONA.TEL_CEL_PER,\r\n" + 
+				"  PERSONA.CTA_AHOR_PER,\r\n" + 
+				"  PERSONA.CIP_PER,\r\n" + 
+				"  PERSONA.CORREO_PNP,\r\n" + 
+				"  ARMA.ID_PAP_ARM,\r\n" + 
+				"  ARMA.NRO_REV_ARM,\r\n" + 
+				"  ARMA.MARC_ARM,\r\n" + 
+				"  ARMA.CAL_ARM,\r\n" + 
+				"  ARMA.CLAS_ARM,\r\n" + 
+				"  ARMA.NRO_SER_ARM,\r\n" + 
+				"  ARMA.ACCES_ARM,\r\n" + 
+				"  ARMA.CAF_ARM,\r\n" + 
+				"  ARMA.CANT_MUN,\r\n" + 
+				"  ARMA.UNID_EMITE,\r\n" + 
+				"  FI_ARMA.IMAGE_FICHER,\r\n" + 
+				"  MEDICO.ID_FIC_MED,\r\n" + 
+				"  MEDICO.APT_PNP,\r\n" + 
+				"  MEDICO.NRO_FIC_MED,\r\n" + 
+				"  FI_MEDICO.IMAGE_FICHER,\r\n" + 
+				"  VACACIONES.ID_P_VAC,\r\n" + 
+				"  VACACIONES.ID_P_VAC,\r\n" + 
+				"  VACACIONES.CANT_VAC,\r\n" + 
+				"  VACACIONES.INI_VAC,\r\n" + 
+				"  VACACIONES.FIN_VAC,\r\n" + 
+				"  VACACIONES.FINI_CUS,\r\n" + 
+				"  VACACIONES.FFIN_CUS,\r\n" + 
+				"  FI_VACACIONES.IMAGE_FICHER,\r\n" + 
+				"  FRANCO.ID_AUT,\r\n" + 
+				"  FRANCO.DIAS_FRANCO,\r\n" + 
+				"  FRANCO.MES,\r\n" + 
+				"  FRANCO.ANIO,\r\n" + 
+				"  FI_FRANCO.IMAGE_FICHER\r\n" + 
+				"FROM OCEX_PRE_INSC PRE \r\n" + 
+				"INNER JOIN OCEX_PER_PNP PERSONA ON PERSONA.ID_PER=PRE.ID_PER\r\n" + 
+				"JOIN OCEX_ARM_REV  ARMA ON ARMA.ID_PAP_ARM=(SELECT MAX(ID_PAP_ARM) FROM  OCEX_ARM_REV where USU_REG=?) \r\n" + 
+				"JOIN OCEX_FICHER FI_ARMA ON FI_ARMA.ID_FICHER=ARMA.ID_FICHER\r\n" + 
+				"JOIN OCEX_FIC_MED MEDICO ON  MEDICO.ID_FIC_MED=(SELECT MAX(ID_FIC_MED) FROM  OCEX_FIC_MED where USU_REG=?) \r\n" + 
+				"JOIN OCEX_FICHER FI_MEDICO ON FI_MEDICO.ID_FICHER=MEDICO.ID_FICHER\r\n" + 
+				"LEFT JOIN OCEX_PAP_VAC  VACACIONES ON VACACIONES.ID_P_VAC=(SELECT MAX(ID_P_VAC) FROM  OCEX_PAP_VAC where USU_REG=?) AND PRE.MOD_PRE='VACACIONES' \r\n" + 
+				"LEFT JOIN OCEX_FICHER FI_VACACIONES ON FI_VACACIONES.ID_FICHER=VACACIONES.ID_FICHER\r\n" + 
+				"LEFT JOIN OCEX_AUTOR_FRANC  FRANCO ON FRANCO.ID_AUT=(SELECT MAX(ID_AUT) FROM  OCEX_AUTOR_FRANC where USU_REG=?)  AND PRE.MOD_PRE='FRANCO' \r\n" + 
+				"LEFT JOIN OCEX_FICHER FI_FRANCO ON FI_FRANCO.ID_FICHER=FRANCO.ID_FICHER\r\n" + 
+				"where  TO_CHAR(PRE.FECHA_REG, 'MM-YYYY')=TO_CHAR(SYSDATE, 'MM-YYYY') and PRE.usu_reg=? AND FRANCO.FECH_REG=PRE.FECHA_REG OR VACACIONES.FECHA_REG=PRE.FECHA_REG  ;\r\n" + 
+				"\r\n" + 
+				"";
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PwOCEX-PNP");
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		java.sql.Connection cn = em.unwrap(java.sql.Connection.class);
+		if (cn != null) {
+			try {
+				PreparedStatement ps = cn.prepareStatement(query);
+				ps.setString(1, Cip);
+				ps.setString(2, Cip);
+				ps.setString(3, Cip);
+				ps.setString(4, Cip);
+				ps.setString(5, Cip);
+				ResultSet rs = ps.executeQuery();
+				if (rs.next()) {
+					//obtner datos
+					
+					
+					
+				}
+			} catch (SQLException e) {
+				System.out.println("Excepcion en query consultapreinscripcionxCip: " + e.toString());
+			} finally {
+				em.getTransaction().commit();
+				em.close();
+				emf.close();
+			}
+		}
+		return respuesta;
+	}
 }

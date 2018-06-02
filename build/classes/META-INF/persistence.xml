@@ -4,6 +4,11 @@
 		<class>entity.OcexCharla</class>
 		<class>entity.OcexFicher</class>
 		<class>entity.OcexPerPnp</class>
+		<class>entity.OcexAutorFranc</class>
+		<class>entity.OcexArmRev</class>
+		<class>entity.OcexFicMed</class>
+		<class>entity.OcexPapVac</class>
+		<class>entity.OcexPreInsc</class>
 		<properties>
 			<property name="eclipselink.jdbc.batch-writing" value="Oracle-JDBC"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@172.31.1.169:1521:esinpoldesa"/>

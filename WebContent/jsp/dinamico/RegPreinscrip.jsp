@@ -30,7 +30,8 @@ function fnControlEventox(vevento, vvrespuesta) {
 				if(respuesta=='true'){
 					document.getElementById("btnregistrar").disabled = true;
 					$('#modal1').openModal()
-					//setTimeout('redireccionarhome()',2000);	 
+					
+					setTimeout('descargar()',2000);	 
 				}else {
 				mensaje('ERROR, NO SE REGISTRO');
 				}
@@ -39,6 +40,12 @@ function fnControlEventox(vevento, vvrespuesta) {
 				//fin if
 		}
 	}
+}
+function descargar(){
+	window.open('https://www.pnp.gob.pe/pagina_OCEX_SUCAMEC/documentos/formato_hoja%20_datos_biograficos.pdf');
+	window.open('https://www.pnp.gob.pe/pagina_OCEX_SUCAMEC/documentos/formato_acta_compromiso.pdf');
+	window.open('https://www.pnp.gob.pe/pagina_OCEX_SUCAMEC/documentos/formato_declaracion_jurada.pdf');
+	window.open('https://www.pnp.gob.pe/pagina_OCEX_SUCAMEC/documentos/declaracion_jurada_veracidad.pdf');
 }
 function redireccionarhome(){
 window.location = 'SPage?action=pagehome';

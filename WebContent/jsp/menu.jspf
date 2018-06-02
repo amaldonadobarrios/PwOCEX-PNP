@@ -28,7 +28,7 @@
                 </li>
                 <li class="bold active"><a href="SPage?action=RegPreinscrip" class="waves-effect waves-cyan"><i class="mdi-action-assignment-ind"></i>Registrar Preinscripción</a>
                 </li>
-                <li class="bold active"><a href="SPage?action=RegDoc" class="waves-effect waves-cyan"><i class="mdi-action-find-in-page"></i>Revisión documentación</a>
+                <li class="bold active"><a href="SPage?action=RevDoc" class="waves-effect waves-cyan"><i class="mdi-action-find-in-page"></i>Revisión documentación</a>
                 </li>
                 <li class="bold active"><a href="SPage?action=RegGt" class="waves-effect waves-cyan"><i class="mdi-action-find-in-page"></i>Registrar Guía de transito</a>
                 </li>

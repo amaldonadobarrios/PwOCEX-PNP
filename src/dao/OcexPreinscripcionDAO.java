@@ -9,5 +9,6 @@ public interface OcexPreinscripcionDAO {
 			String id_fichero0, String id_fichero2, String id_fichero3,String usuario);
 
 public int consultainscripcionok(int id_per);
+public String consultapreinscripcionxCip(String Cip);
 }
 
