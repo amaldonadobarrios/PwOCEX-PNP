@@ -101,27 +101,24 @@ function fnControlEvento(vevento, vvrespuesta) {
 						$("#aptitud").val(ap);
 						$("#txtnficha").val(arrMedico.nroFicMed);
 						$("#tipo").val(tipo);
+						var arrautorizacion=JSON.parse(arr[4]);
 						if (tipo=='VACACIONES'){
-						var arrVacaciones=JSON.parse(arr[4]);
 						document.getElementById("modoform").innerHTML = "MODALIDAD : VACACIONES " ;
-						$("#id_autorizacion").val(arrVacaciones.nroFicMed);
-						$("#datepicker1").val(arrVacaciones.iniVac);
-						$("#datepicker2").val(arrVacaciones.finVac);
-						$("#txtdiasvac").val(arrVacaciones.cantVac);
+						document.getElementById("id_autorizacion").value=arrautorizacion.idPVac;
+						$("#datepicker1").val(arrautorizacion.iniVac);
+						$("#datepicker2").val(arrautorizacion.finVac);
+						$("#txtdiasvac").val(arrautorizacion.cantVac);
 						$("#divfranco").hide();
 						$("#divvacaciones").show();
-						}else{
-						var arrfranco=JSON.parse(arr[4]);
+						}else if(tipo=='FRANCO'){
 						document.getElementById("modoform").innerHTML = "MODALIDAD : FRANCO " ;
-						$("#id_autorizacion").val(arrfranco.idAut);
-						$("#txtaño").val(arrfranco.anio);
-						document.getElementById('diasfranco').value=arrfranco.diasFranco;
-						$("#messervicio").val(arrfranco.mes);
+						$("#id_autorizacion").val(arrautorizacion.idAut);
+						$("#txtaño").val(arrautorizacion.anio);
+						document.getElementById('diasfranco').value=arrautorizacion.diasFranco;
+						$("#messervicio").val(arrautorizacion.mes);
 						$("#divfranco").show();
 						$("#divvacaciones").hide();
-
 						}
-						
 						//IMAGENES
 						var imgarma=JSON.parse(arr[5]);
 						if (tipo=='VACACIONES'){

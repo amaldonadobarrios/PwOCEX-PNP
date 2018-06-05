@@ -279,6 +279,7 @@ public class OcexPreinscripcionDAOImpl implements OcexPreinscripcionDAO {
 					medico.setAptPnp(rs.getString("APT_PNP"));
 					medico.setNroFicMed(rs.getString("NRO_FIC_MED"));
 					vacaciones.setIdPVac(rs.getInt("ID_P_VAC"));
+					System.out.println("vacaciones.setIdPVac "+vacaciones.getIdPVac()  );
 					vacaciones.setIniVac(rs.getDate("INI_VAC"));
 					vacaciones.setFinVac(rs.getDate("FIN_VAC"));
 					vacaciones.setCantVac(rs.getString("CANT_VAC"));
@@ -371,10 +372,10 @@ public class OcexPreinscripcionDAOImpl implements OcexPreinscripcionDAO {
 
 	@Override
 	public boolean inscribir(String id_prein, String tipo, String id_per, String id_autorizacion, String id_arma,
-			String id_ficha, String Usuario) {
+			String id_ficha, String Usuario, String cip) {
 		int estado=0;
 		boolean res=false;
-		
+		System.out.println("id_autorizacion : "+id_autorizacion);
 		String query = "UPDATE OCEX_PRE_INSC\r\n" + 
 				"SET FLAG_PRE             ='0'\r\n" + 
 				"WHERE ID_PRE      = ?";
@@ -383,14 +384,23 @@ public class OcexPreinscripcionDAOImpl implements OcexPreinscripcionDAO {
 				"  (\r\n" + 
 				"    ID_PER,\r\n" + 
 				"    ID_PRE,\r\n" + 
-				"    USU_REG\r\n" + 
+				"    USU_REG,\r\n" + 
+				"    TIPO_INSCR,\r\n" + 
+				"    ID_AUTORIZACION,\r\n" + 
+				"    ID_ARMA,\r\n" + 
+				"    ID_FICHA_MED,\r\n" + 
+				"    CIP\r\n" + 
 				"  )\r\n" + 
 				"  VALUES\r\n" + 
 				"  (\r\n" + 
+				"    ?,\r\n" + 
+				"    ?,\r\n" + 
+				"    ?,\r\n" + 
 				"   ?,\r\n" + 
 				"    ?,\r\n" + 
-				"    ?\r\n" + 
-				"  )";
+				"    ?,\r\n" + 
+				"    ?,\r\n" + 
+				"    ?)";
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("PwOCEX-PNP");
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
@@ -401,9 +411,14 @@ public class OcexPreinscripcionDAOImpl implements OcexPreinscripcionDAO {
 				ps.setInt(1, Integer.parseInt(id_per.trim()));
 				ps.setInt(2, Integer.parseInt(id_prein.trim()));
 				ps.setString(3, Usuario);
+				ps.setString(4, tipo);
+				ps.setInt(5, Integer.parseInt(id_autorizacion.trim()));
+				ps.setInt(6, Integer.parseInt(id_arma));
+				ps.setInt(7, Integer.parseInt(id_ficha));
+				ps.setString(8, cip);
 				estado= ps.executeUpdate();
 			} catch (SQLException e) {
-				System.out.println("Excepcion en query consultainscripcionok: " + e.toString());
+				System.out.println("Excepcion en query consultainscripcionok query2: " + e.toString());
 			} finally {
 				em.getTransaction().commit();
 				em.close();
@@ -421,7 +436,7 @@ public class OcexPreinscripcionDAOImpl implements OcexPreinscripcionDAO {
 					ps.setInt(1, Integer.parseInt(id_prein.trim()));
 					estado= ps.executeUpdate();
 				} catch (SQLException e) {
-					System.out.println("Excepcion en query consultainscripcionok: " + e.toString());
+					System.out.println("Excepcion en query consultainscripcionok:  query" + e.toString());
 				} finally {
 					em.getTransaction().commit();
 					em.close();

@@ -52,6 +52,12 @@
   <link href="js/plugins/dropify/css/dropify.min.css" type="text/css" rel="stylesheet" media="screen,projection">
 
 <link href="css/ocex.css" type="text/css" rel="stylesheet" >
+
+
+ <link rel="stylesheet" href="css/chosen.min.css">
+  <link href="js/plugins/jsgrid/css/jsgrid.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="js/plugins/jsgrid/css/jsgrid-theme.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+
 </head>
 
 <body>
@@ -172,11 +178,23 @@
 	<script type="text/javascript" src="js/serverJS/controller.js"></script>
 	<script type="text/javascript" src="js/dirtexto.js"></script>
 	<script type="text/javascript" src="js/validator.js"></script>
-	
-	
-	
+
   <link rel="stylesheet" href="js/jsquery/jquery-ui.css">
   <link rel="stylesheet" href="js/jsquery/jquery-ui.themedark.css">
+  
+  <script type="text/javascript" src="js/chosen.jquery.min.js"></script>
+  
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+  
+  
+  <script type="text/javascript" src="js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
+ <script type="text/javascript" src="js/plugins/data-tables/data-tables-script.js"></script> 
+     <script type="text/javascript" src="js/plugins/jsgrid/js/db.js"></script> <!--data-->
+    <script type="text/javascript" src="js/plugins/jsgrid/js/jsgrid.min.js"></script>
+    <script type="text/javascript" src="js/plugins/jsgrid/js/jsgrid-script.js"></script>
+   
 <!--   <script src="js/jsquery/jquery.js"></script> -->
   <script src="js/jsquery/jquery-ui.js"></script>
 </body>
@@ -184,12 +202,7 @@
 	function mensaje(msj) {
 		Materialize.toast(msj, 4000, 'rounded');
 	}
-// 	 $( function() {
-// 		    $( "#tabs" ).tabs({
-// 		      event: "mouseover"
-// 		    });
-// 		  } ); 
-	 
+
 	  $( function() {
     $( "#datepicker" ).datepicker();
     $( "#datepicker1" ).datepicker();
@@ -200,7 +213,13 @@
 	  $( function() {
 	    $( "#tabs" ).tabs();
 	  } );
-	 
+	
+	  
+	  $(document).ready( function () {
+		    $('#table1').DataTable();
+		    $('#table2').DataTable();
+		} );
+
 </script>
 
 </html>

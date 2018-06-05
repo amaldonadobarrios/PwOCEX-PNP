@@ -33,9 +33,9 @@ OcexPreinscripcionDAO dao=new OcexPreinscripcionDAOImpl();
 	}
 	@Override
 	public boolean inscribir(String id_prein, String tipo, String id_per, String id_autorizacion, String id_arma,
-			String id_ficha, String Usuario) {
+			String id_ficha, String Usuario,String cip) {
 		// TODO Auto-generated method stub
-		return dao.inscribir(id_prein, tipo, id_per, id_autorizacion, id_arma, id_ficha, Usuario);
+		return dao.inscribir(id_prein, tipo, id_per, id_autorizacion, id_arma, id_ficha, Usuario,cip);
 	}
 
 }

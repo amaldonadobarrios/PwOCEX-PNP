@@ -46,8 +46,8 @@ public class LogicaPreinscripcion {
 	}
 
 	public boolean inscribir(String id_prein, String tipo, String id_per, String id_autorizacion, String id_arma,
-			String id_ficha, String Usuario) throws IOException {
+			String id_ficha, String Usuario, String cip) throws IOException {
 		OcexPreinscripcionService serv=new OcexPreinscripcionServiceImpl();
-		return serv.inscribir(id_prein, tipo, id_per, id_autorizacion, id_arma, id_ficha,  Usuario);
+		return serv.inscribir(id_prein, tipo, id_per, id_autorizacion, id_arma, id_ficha,  Usuario,cip);
 	}
 }

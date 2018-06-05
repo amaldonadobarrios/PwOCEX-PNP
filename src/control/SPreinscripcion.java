@@ -90,9 +90,10 @@ public class SPreinscripcion extends HttpServlet {
 		String id_autorizacion=request.getParameter("id_autorizacion");
 		String id_arma=request.getParameter("id_arma");
 		String id_ficha=request.getParameter("id_ficha");
+		String txtcip=request.getParameter("txtcip");
 		HttpSession sesion = request.getSession();
 		String Usuario=(String) sesion.getAttribute("CIP");
-		boolean estado=LogicaPreinscripcion.getInstance().inscribir(id_prein, tipo, id_per, id_autorizacion, id_arma, id_ficha, Usuario );
+		boolean estado=LogicaPreinscripcion.getInstance().inscribir(id_prein, tipo, id_per, id_autorizacion, id_arma, id_ficha, Usuario,txtcip );
 		System.out.println("INSCRIPCION   :"+estado);
 		HtmlUtil.getInstance().escrituraHTML(response, estado+"");
 		

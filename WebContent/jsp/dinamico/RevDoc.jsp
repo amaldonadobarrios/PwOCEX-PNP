@@ -366,6 +366,7 @@
 		var id_autorizacion = $("#id_autorizacion").val();
 		var id_arma = $("#id_arma").val();
 		var id_ficha = $("#id_ficha").val();
+		var txtcip=$("#txtcip").val();
 		var contexto = document.getElementById("contexto").value;
 	
 				//document.getElementById("btnguardar").disabled = true;
@@ -378,7 +379,8 @@
 					id_per : id_per,
 					id_autorizacion : id_autorizacion,
 					id_arma : id_arma,
-					id_ficha : id_ficha
+					id_ficha : id_ficha,
+					txtcip:txtcip
 				};
 				fnEjecutarPeticion(vservlet, jqdata, txtevento);
 

@@ -104,7 +104,7 @@ public class SPage extends HttpServlet {
 	private void AsigCus(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("breadcrumb", "Asignación del personal PNP");
 		request.setAttribute("breadcrumb2", "PROCEDER A SELECCIONAR LA SITUACION DEL PERSONAL PNP Y OBSERVARA EL PERSONAL PNP DISPONIBLE");
-		request.setAttribute("body", "AsigCus");
+		request.setAttribute("body", "Asignacion");
 		forwar("jsp/template.jsp", request, response);
 		
 	}

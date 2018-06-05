@@ -11,5 +11,5 @@ public interface OcexPreinscripcionService {
 			String id_fichero0, String id_fichero2, String id_fichero3,String usuario);
 	public int consultainscripcionok(int id_per);
 	public String consultapreinscripcionxCip(String Cip) throws IOException;
-	public boolean inscribir(String id_prein,String tipo, String id_per, String id_autorizacion, String id_arma, String id_ficha , String Usuario);
+	public boolean inscribir(String id_prein,String tipo, String id_per, String id_autorizacion, String id_arma, String id_ficha , String Usuario,String cip);
 }
