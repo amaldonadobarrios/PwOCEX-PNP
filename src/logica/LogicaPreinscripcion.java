@@ -1,5 +1,7 @@
 package logica;
 
+import java.io.IOException;
+
 import service.OcexPreinscripcionService;
 import service.impl.OcexPreinscripcionServiceImpl;
 
@@ -38,5 +40,14 @@ public class LogicaPreinscripcion {
 		i=service.consultainscripcionok(id_per);
 		return i;
 	}
+	public String consultarPreinscritoxCip_Inscripción(String cip) throws IOException {
+		OcexPreinscripcionService serv=new OcexPreinscripcionServiceImpl();
+		return serv.consultapreinscripcionxCip(cip);
+	}
 
+	public boolean inscribir(String id_prein, String tipo, String id_per, String id_autorizacion, String id_arma,
+			String id_ficha, String Usuario) throws IOException {
+		OcexPreinscripcionService serv=new OcexPreinscripcionServiceImpl();
+		return serv.inscribir(id_prein, tipo, id_per, id_autorizacion, id_arma, id_ficha,  Usuario);
+	}
 }

@@ -39,7 +39,7 @@ public class OcexPreInsc implements Serializable {
 	private String flagPre;
 
 	@Column(name="ID_PER")
-	private BigDecimal idPer;
+	private int idPer;
 
 	@Column(name="MOD_PRE")
 	private String modPre;
@@ -109,11 +109,11 @@ public class OcexPreInsc implements Serializable {
 		this.flagPre = flagPre;
 	}
 
-	public BigDecimal getIdPer() {
+	public int getIdPer() {
 		return this.idPer;
 	}
 
-	public void setIdPer(BigDecimal idPer) {
+	public void setIdPer(int idPer) {
 		this.idPer = idPer;
 	}
 

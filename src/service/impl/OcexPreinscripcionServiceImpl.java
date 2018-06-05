@@ -1,5 +1,7 @@
 package service.impl;
 
+import java.io.IOException;
+
 import dao.OcexPreinscripcionDAO;
 import dao.impl.OcexPreinscripcionDAOImpl;
 import service.OcexPreinscripcionService;
@@ -23,6 +25,17 @@ OcexPreinscripcionDAO dao=new OcexPreinscripcionDAOImpl();
 	public int consultainscripcionok(int id_per) {
 		// TODO Auto-generated method stub
 		return dao.consultainscripcionok(id_per);
+	}
+	@Override
+	public String consultapreinscripcionxCip(String Cip) throws IOException {
+		// TODO Auto-generated method stub
+		return dao.consultapreinscripcionxCip(Cip);
+	}
+	@Override
+	public boolean inscribir(String id_prein, String tipo, String id_per, String id_autorizacion, String id_arma,
+			String id_ficha, String Usuario) {
+		// TODO Auto-generated method stub
+		return dao.inscribir(id_prein, tipo, id_per, id_autorizacion, id_arma, id_ficha, Usuario);
 	}
 
 }

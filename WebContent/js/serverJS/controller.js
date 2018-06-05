@@ -51,10 +51,121 @@ function fnControlEvento(vevento, vvrespuesta) {
 						$("#foto").attr('src', '');
 						}
 					}
+				if (vevento == 'consultarPreinscripcion') {
+					var respuesta = v_resultado;
+					//document.getElementById("btnguardar").disabled = false;
+						if(respuesta=='NOK'){
+						mensaje('CIP NO REGISTRADO EN LA PREINSCRIPCION  O YA SE ENCUENTRA INSCRITO');
+						}else{
+						mensaje('CORRECTO');
+						var rpta = respuesta.split('$$$$$');
+						
+						var arrjson = rpta[0];
+						var fotoperfil = rpta[1];
+						var arr = JSON.parse(arrjson);
+						var arrPersona = JSON.parse(arr[0]);
+						$("#id_per").val(arrPersona.idPer);
+						$("#txtcip").val(arrPersona.cipPer);
+						$("#txtdni").val(arrPersona.dniPer);
+						$("#txtgrado").val(arrPersona.gradoPer);
+						$("#txtpaterno").val(arrPersona.apePatPer);
+						$("#txtmaterno").val(arrPersona.apeMatPer);
+						$("#txtnombres").val(arrPersona.nomPer);
+						$("#txtsituacion").val('ACTIVIDAD');
+						$("#txtgenero").val(arrPersona.genPer);
+						$("#datepicker").val(arrPersona.fecNac);
+						$("#txtunidad").val(arrPersona.nomUniPer);
+						$("#txtcuenta").val(arrPersona.ctaAhorPer);
+						$("#txtdom").val(arrPersona.domPer);
+						$("#txttel").val(arrPersona.telCelPer);
+						$("#txtcorreo").val(arrPersona.correoPnp);
+						
+						var arrPreinscripcion = JSON.parse(arr[1]);
+						$("#id_prein").val(arrPreinscripcion.idPre);
+						
+						var tipo=arrPreinscripcion.modPre;
+						var arrArma = JSON.parse(arr[2]);
+						$("#id_arma").val(arrArma.idPapArm);
+						$("#pistola").val(arrArma.clasArm);
+						$("#serie").val(arrArma.nroSerArm);
+						$("#marca").val(arrArma.marcArm);
+						$("#calibre").val(arrArma.calArm);
+						$("#caf").val(arrArma.cafArm);
+						$("#municion").val(arrArma.cantMun);
+						$("#nrorevista").val(arrArma.nroRevArm);
+						$("#unidadrevista").val(arrArma.unidEmite);
+
+						var arrMedico= JSON.parse(arr[3]);
+						$("#id_ficha").val(arrMedico.idFicMed);
+						var ap=arrMedico.aptPnp;
+						$("#aptitud").val(ap);
+						$("#txtnficha").val(arrMedico.nroFicMed);
+						$("#tipo").val(tipo);
+						if (tipo=='VACACIONES'){
+						var arrVacaciones=JSON.parse(arr[4]);
+						document.getElementById("modoform").innerHTML = "MODALIDAD : VACACIONES " ;
+						$("#id_autorizacion").val(arrVacaciones.nroFicMed);
+						$("#datepicker1").val(arrVacaciones.iniVac);
+						$("#datepicker2").val(arrVacaciones.finVac);
+						$("#txtdiasvac").val(arrVacaciones.cantVac);
+						$("#divfranco").hide();
+						$("#divvacaciones").show();
+						}else{
+						var arrfranco=JSON.parse(arr[4]);
+						document.getElementById("modoform").innerHTML = "MODALIDAD : FRANCO " ;
+						$("#id_autorizacion").val(arrfranco.idAut);
+						$("#txtaño").val(arrfranco.anio);
+						document.getElementById('diasfranco').value=arrfranco.diasFranco;
+						$("#messervicio").val(arrfranco.mes);
+						$("#divfranco").show();
+						$("#divvacaciones").hide();
+
+						}
+						
+						//IMAGENES
+						var imgarma=JSON.parse(arr[5]);
+						if (tipo=='VACACIONES'){
+						var imgvaca=JSON.parse(arr[6]);
+						var load=' <img class="materialboxed"  data-caption="Orden de Vacaciones o Autorización"  width="250" src="data:image/jpeg;base64,'+imgvaca+'">';
+                		document.getElementById("fotoauto").innerHTML = load;
+						}else{
+						var imgfranco=JSON.parse(arr[6]);
+						var load='<img class="materialboxed" data-caption="Orden de Vacaciones o Autorización"  width="250" src="data:image/jpeg;base64,'+imgfranco+'">';
+                		document.getElementById("fotoauto").innerHTML = load;
+						}
+						var imgmedico=JSON.parse(arr[7]);
+			
+						var load='<div class="row center-align" id="fotoperfil"> <img class="responsive-img circle"    width="200px" src="data:image/jpeg;base64,'+fotoperfil+'"></div>';
+                		document.getElementById("fotoperfil").innerHTML = load;
+
+						var load='<img  class="materialboxed" width="250" data-caption="Constancia de Ficha médica"  src="data:image/jpeg;base64,'+imgmedico+'">';
+                		document.getElementById("fotomedico").innerHTML = load;
+                		
+                		var load='<div class="col l6 center-align" > <img class="materialboxed" data-caption="Papeleta de Revista de arma"   width="250" src="data:image/jpeg;base64,'+imgarma+'">';
+                		document.getElementById("fotoarma").innerHTML = load;
+
+						}
+					}
 					//fin if
+					
+				if (vevento == 'inscribir') {
+					var respuesta = v_resultado;
+					//document.getElementById("btnguardar").disabled = false;
+						if(respuesta=='false'){
+						mensaje('ERROR AL GRABAR');
+						}else{
+						mensaje('EFECTIVO PNP INSCRITO CORRECTAMENTE');
+						setTimeout('redireccionarPaginaRevDoc()',2000);	
+						}
+					}
+					
+					
 			}
 		}
 	}
 function redireccionarPagina() {
   window.location = "SPage?action=login";
+}
+function redireccionarPaginaRevDoc() {
+  window.location = "SPage?action=RevDoc";
 }

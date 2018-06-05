@@ -48,6 +48,14 @@ public class SPreinscripcion extends HttpServlet {
 							System.out.println("hdEvento :  savePreinscripcion");
 							savePreinscripcion(request, response);
 							break;
+						case "consultarPreinscripcion":
+							System.out.println("hdEvento :  consultarPreinscripcion");
+							consultarPreinscripcion(request, response);
+							break;
+						case "inscribir":
+							System.out.println("hdEvento :  inscribir");
+							inscribir(request, response);
+							break;
 						default:
 							break;
 						}
@@ -72,6 +80,30 @@ public class SPreinscripcion extends HttpServlet {
 
 		}
 
+	}
+
+	private void inscribir(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		System.out.println("void inscribir");
+		String id_prein=request.getParameter("id_prein");
+		String tipo=request.getParameter("tipo");
+		String id_per=request.getParameter("id_per");
+		String id_autorizacion=request.getParameter("id_autorizacion");
+		String id_arma=request.getParameter("id_arma");
+		String id_ficha=request.getParameter("id_ficha");
+		HttpSession sesion = request.getSession();
+		String Usuario=(String) sesion.getAttribute("CIP");
+		boolean estado=LogicaPreinscripcion.getInstance().inscribir(id_prein, tipo, id_per, id_autorizacion, id_arma, id_ficha, Usuario );
+		System.out.println("INSCRIPCION   :"+estado);
+		HtmlUtil.getInstance().escrituraHTML(response, estado+"");
+		
+	}
+
+	private void consultarPreinscripcion(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		System.out.println("void consultarPreinscripcion");
+		String cip = request.getParameter("cip").trim();
+		String rpta=LogicaPreinscripcion.getInstance().consultarPreinscritoxCip_Inscripción(cip);
+		HtmlUtil.getInstance().escrituraHTML(response, rpta);
+		
 	}
 
 	private void savePreinscripcion(HttpServletRequest request, HttpServletResponse response) {

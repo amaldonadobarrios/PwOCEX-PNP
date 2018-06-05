@@ -1,5 +1,7 @@
 package dao;
 
+import java.io.IOException;
+
 public interface OcexPreinscripcionDAO {
 	public boolean  SP_RegistrarPreinscripcion(String tipo, String fechainivac, String txtdiasvac, String fechafinvac,
 			String fechainiservicio, String txtdiasservicio, String fechafinservicio, String diasfranco,
@@ -9,6 +11,9 @@ public interface OcexPreinscripcionDAO {
 			String id_fichero0, String id_fichero2, String id_fichero3,String usuario);
 
 public int consultainscripcionok(int id_per);
-public String consultapreinscripcionxCip(String Cip);
+public String consultapreinscripcionxCip(String Cip) throws IOException;
+public boolean inscribir(String id_prein,String tipo, String id_per, String id_autorizacion, String id_arma, String id_ficha, String Usuario);
 }
+
+
 
